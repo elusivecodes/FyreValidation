@@ -35,7 +35,7 @@ $validator = new Validator();
 
 **Add**
 
-Add a Rule to the validator.
+Add a validation rule.
 
 - `$field` is a string representing the field name.
 - `$rule` is a *Closure* or a [*Rule*](#rules) representing the validation rule.
@@ -51,7 +51,7 @@ $validator->add($field, $rule, $options);
 
 **Clear**
 
-Clear all rules from the Validator.
+Clear all rules from the *Validator*.
 
 ```php
 $validator->clear();
@@ -73,237 +73,237 @@ $errors = $validator->validate($data, $type);
 
 **Alpha**
 
-Validates if the value contains only alphabetical characters.
+Create an "alpha" *Rule*.
 
 ```php
-$validator->add('field', Rule::alpha());
+Rule::alpha();
 ```
 
 **Alpha Numeric**
 
-Validates if the value contains only alpha-numeric characters.
+Create an "alpha-numeric" *Rule*.
 
 ```php
-$validator->add('field', Rule::alphaNumeric());
+Rule::alphaNumeric();
 ```
 
 **Ascii**
 
-Validates if the value contains only ASCII characters.
+Create an "ASCII" *Rule*.
 
 ```php
-$validator->add('field', Rule::ascii());
+Rule::ascii();
 ```
 
 **Between**
 
-Validates if the value is between a minimum and a maximum (inclusive).
+Create a "between" *Rule*.
 
-- `$min` is a number representing the minimum value.
-- `$max` is a number representing the maximum value.
+- `$min` is a number representing the minimum value (inclusive).
+- `$max` is a number representing the maximum value (inclusive).
 
 ```php
-$validator->add('field', Rule::between($min, $max));
+Rule::between($min, $max);
 ```
 
 **Boolean**
 
-Validates if the value can be converted to a boolean.
+Create a "boolean" *Rule*.
 
 ```php
-$validator->add('field', Rule::boolean());
+Rule::boolean();
 ```
 
 **Decimal**
 
-Validates if the value is a decimal number.
+Create a "decimal" *Rule*.
 
 ```php
-$validator->add('field', Rule::decimal());
+Rule::decimal();
 ```
 
 **Differs**
 
-Validates if the value is different to another field value.
+Create a "differs" *Rule*.
 
 - `$field` is a string representing the other field to compare against.
 
 ```php
-$validator->add('field', Rule::differs($field));
+Rule::differs($field);
 ```
 
 **Email**
 
-Validates if the value is an email address.
+Create an "email" *Rule*.
 
 ```php
-$validator->add('field', Rule::email());
+Rule::email();
 ```
 
 **Equals**
 
-Validates if the value is equal to the supplied value.
+Create an "equals" *Rule*.
 
 - `$value` is the value to compare against.
 
 ```php
-$validator->add('field', Rule::equals($value));
+Rule::equals($value);
 ```
 
 **Exact Length**
 
-Validates if the value length is exactly equal to the supplied value.
+Create an "exact length" *Rule*.
 
 - `$length` is a number representing the length.
 
 ```php
-$validator->add('field', Rule::exactLength($length));
+Rule::exactLength($length);
 ```
 
 **Greater Than**
 
-Validates if the value is greater than the supplied value.
+Create a "greater than" *Rule*.
 
 - `$min` is the minimum value.
 
 ```php
-$validator->add('field', Rule::greaterThan($min));
+Rule::greaterThan($min);
 ```
 
 **Greater Than Or Equals**
 
-Validates if the value is greater than or equal to the supplied value.
+Create a "greater than or equals" *Rule*.
 
 - `$min` is the minimum value.
 
 ```php
-$validator->add('field', Rule::greaterThanOrEquals($min));
+Rule::greaterThanOrEquals($min);
 ```
 
 **In**
 
-Validates if the value is equal to one of the supplied values.
+Create an "in" *Rule*.
 
 - `$values` is an array containing the values to compare against.
 
 ```php
-$validator->add('field', Rule::in($values));
+Rule::in($values);
 ```
 
 **Integer**
 
-Validates if the value is an integer.
+Create an "integer" *Rule*.
 
 ```php
-$validator->add('field', Rule::integer());
+Rule::integer();
 ```
 
 **Ip**
 
-Validates if the value is an IP address.
+Create an "IP" *Rule*.
 
 ```php
-$validator->add('field', Rule::ip());
+Rule::ip();
 ```
 
 **Ipv4**
 
-Validates if the value is an IPv4 address.
+Create an "IPv4" *Rule*.
 
 ```php
-$validator->add('field', Rule::ipv4());
+Rule::ipv4();
 ```
 
 **Ipv6**
 
-Validates if the value is an IPv6 address.
+Create an "IPv6" *Rule*.
 
 ```php
-$validator->add('field', Rule::ipv6());
+Rule::ipv6();
 ```
 
 **Less Than**
 
-Validates if the value is less than the supplied value.
+Create a "less than" *Rule*.
 
 - `$max` is the maximum value.
 
 ```php
-$validator->add('field', Rule::lessThan($max));
+Rule::lessThan($max);
 ```
 
 **Less Than Or Equals**
 
-Validates if the value is less than or equal to the supplied value.
+Create a "less than or equals" *Rule*.
 
 - `$max` is the maximum value.
 
 ```php
-$validator->add('field', Rule::lessThanOrEquals($max));
+Rule::lessThanOrEquals($max);
 ```
 
 **Matches**
 
-Validates if the value is equal to another field value.
+Create a "matches" *Rule*.
 
 - `$field` is a string representing the other field to compare against.
 
 ```php
-$validator->add('field', Rule::matches($field));
+Rule::matches($field);
 ```
 
 **Max Length**
 
-Validates if the value length is less than the supplied value.
+Create a "maximum length" *Rule*.
 
 - `$length` is a number representing the maximum length.
 
 ```php
-$validator->add('field', Rule::maxLength($length));
+Rule::maxLength($length);
 ```
 
 **Min Length**
 
-Validates if the value length is greater than the supplied value.
+Create a "minimum length" *Rule*.
 
 - `$length` is a number representing the minimum length.
 
 ```php
-$validator->add('field', Rule::minLength($length));
+Rule::minLength($length);
 ```
 
 **Natural Number**
 
-Validates if hte value is a natural number.
+Create a "natural number" *Rule*.
 
 ```php
-$validator->add('field', Rule::naturalNumber());
+Rule::naturalNumber();
 ```
 
 **Regex**
 
-Validates if the value matches a regular expression.
+Create a "regular expression" *Rule*.
 
 - `$regex` is a string representing the regular expression.
 
 ```php
-$validator->add('field', Rule::regex($regex));
+Rule::regex($regex);
 ```
 
 **Required**
 
-Validates if the value is not empty.
+Create a "required" *Rule*.
 
 ```php
-$validator->add('field', Rule::required());
+Rule::required();
 ```
 
 **Url**
 
-Validates if the value is a valid URL.
+Create a "URL" *Rule*.
 
 ```php
-$validator->add('field', Rule::url());
+Rule::url();
 ```
 
 

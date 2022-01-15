@@ -227,7 +227,7 @@ trait RulesTrait
     }
 
     /**
-     * Create an "IP V4" Rule.
+     * Create an "IPv4" Rule.
      * @return Rule The Rule.
      */
     public static function ipv4(): static
@@ -239,7 +239,7 @@ trait RulesTrait
     }
 
     /**
-     * Create an "IP V6" Rule.
+     * Create an "IPv6" Rule.
      * @return Rule The Rule.
      */
     public static function ipv6(): static
@@ -333,7 +333,7 @@ trait RulesTrait
     }
 
     /**
-     * Create a "regex" Rule.
+     * Create a "regular expression" Rule.
      * @param string $regex The regular expression.
      * @return Rule The Rule.
      */
@@ -347,7 +347,7 @@ trait RulesTrait
     }
 
     /**
-     * Create a "required" rule.
+     * Create a "required" Rule.
      * @return Rule The Rule.
      */
     public static function required(): static
@@ -361,7 +361,7 @@ trait RulesTrait
     }
 
     /**
-     * Create a "URL" rule.
+     * Create a "URL" Rule.
      * @return Rule The Rule.
      */
     public static function url(): static

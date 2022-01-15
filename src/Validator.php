@@ -19,7 +19,7 @@ class Validator
     protected array $fields = [];
 
     /**
-     * Add a Rule to the validator.
+     * Add a validation rule.
      * @param string $field The field name.
      * @param Closure|Rule $rule The Rule.
      * @param array $options Options for the rule.
