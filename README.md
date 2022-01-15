@@ -329,7 +329,7 @@ $validator->add('field', function($value) {
 });
 ```
 
-If a custom error message is not supplied, the rule name will be used to retrieve a value from the [*FyreLang*](https://github.com/elusivecodes/FyreLang) library. The field placeholder can be used for the field name, and any arguments supplied to the rule will be available as numeric placeholders.
+If a custom error message is not supplied, the rule name will be used to retrieve a [*Lang*](https://github.com/elusivecodes/FyreLang) value. The field placeholder can be used for the field name, and any arguments supplied to the rule will be available as numeric placeholders.
 
 ```php
 // language/en/Validation.php
