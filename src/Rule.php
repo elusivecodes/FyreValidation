@@ -52,7 +52,7 @@ class Rule
      * @param mixed $value The value to test.
      * @param array $data The validation data.
      */
-    public function __invoke($value, array $data)
+    public function __invoke(mixed $value, array $data)
     {
         if ($this->skipEmpty && ($value === null || $value === '' || $value === [])) {
             return true;

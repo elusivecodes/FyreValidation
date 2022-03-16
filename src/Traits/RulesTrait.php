@@ -39,7 +39,7 @@ trait RulesTrait
     public static function alpha(): static
     {
         return new static(
-            fn($value): bool => is_scalar($value) && ctype_alpha($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_alpha($value),
             __FUNCTION__
         );
     }
@@ -51,7 +51,7 @@ trait RulesTrait
     public static function alphaNumeric(): static
     {
         return new static(
-            fn($value): bool => is_scalar($value) && ctype_alnum($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_alnum($value),
             __FUNCTION__
         );
     }
@@ -63,7 +63,7 @@ trait RulesTrait
     public static function ascii(): static
     {
         return new static(
-            fn($value): bool => is_scalar($value) && ctype_print($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_print($value),
             __FUNCTION__
         );
     }
@@ -77,7 +77,7 @@ trait RulesTrait
     public static function between(int $min, int $max): static
     {
         return new static(
-            fn($value): bool => $value >= $min && $value <= $max,
+            fn(mixed $value): bool => $value >= $min && $value <= $max,
             __FUNCTION__,
             [$min, $max]
         );
@@ -90,7 +90,7 @@ trait RulesTrait
     public static function boolean(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -102,7 +102,7 @@ trait RulesTrait
     public static function decimal(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -128,7 +128,7 @@ trait RulesTrait
     public static function email(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE | FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE | FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -138,10 +138,10 @@ trait RulesTrait
      * @param mixed $other The value to compare against.
      * @return Rule The Rule.
      */
-    public static function equals($other): static
+    public static function equals(mixed $other): static
     {
         return new static(
-            fn($value): bool => $value == $other,
+            fn(mixed $value): bool => $value == $other,
             __FUNCTION__,
             [$other]
         );
@@ -155,7 +155,7 @@ trait RulesTrait
     public static function exactLength(int $length): static
     {
         return new static(
-            fn($value): bool => strlen((string) $value) === $length,
+            fn(mixed $value): bool => strlen((string) $value) === $length,
             __FUNCTION__,
             [$length]
         );
@@ -169,7 +169,7 @@ trait RulesTrait
     public static function greaterThan(int $min): static
     {
         return new static(
-            fn($value): bool => $value > $min,
+            fn(mixed $value): bool => $value > $min,
             __FUNCTION__,
             [$min]
         );
@@ -183,7 +183,7 @@ trait RulesTrait
     public static function greaterThanOrEquals(int $min): static
     {
         return new static(
-            fn($value): bool => $value >= $min,
+            fn(mixed $value): bool => $value >= $min,
             __FUNCTION__,
             [$min]
         );
@@ -197,7 +197,7 @@ trait RulesTrait
     public static function in(array $values): static
     {
         return new static(
-            fn($value): bool => in_array($value, $values),
+            fn(mixed $value): bool => in_array($value, $values),
             __FUNCTION__,
             [implode(', ', $values)]
         );
@@ -210,7 +210,7 @@ trait RulesTrait
     public static function integer(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -222,7 +222,7 @@ trait RulesTrait
     public static function ip(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -234,7 +234,7 @@ trait RulesTrait
     public static function ipv4(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -246,7 +246,7 @@ trait RulesTrait
     public static function ipv6(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -259,7 +259,7 @@ trait RulesTrait
     public static function lessThan(int $max): static
     {
         return new static(
-            fn($value): bool => $value < $max,
+            fn(mixed $value): bool => $value < $max,
             __FUNCTION__,
             [$max]
         );
@@ -273,7 +273,7 @@ trait RulesTrait
     public static function lessThanOrEquals(int $max): static
     {
         return new static(
-            fn($value): bool => $value <= $max,
+            fn(mixed $value): bool => $value <= $max,
             __FUNCTION__,
             [$max]
         );
@@ -301,7 +301,7 @@ trait RulesTrait
     public static function maxLength(int $length): static
     {
         return new static(
-            fn($value): bool => strlen((string) $value) <= $length,
+            fn(mixed $value): bool => strlen((string) $value) <= $length,
             __FUNCTION__,
             [$length]
         );
@@ -315,7 +315,7 @@ trait RulesTrait
     public static function minLength(int $length): static
     {
         return new static(
-            fn($value): bool => strlen((string) $value) >= $length,
+            fn(mixed $value): bool => strlen((string) $value) >= $length,
             __FUNCTION__,
             [$length]
         );
@@ -328,7 +328,7 @@ trait RulesTrait
     public static function naturalNumber(): static
     {
         return new static(
-            fn($value): bool => is_scalar($value) && ctype_digit($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_digit($value),
             __FUNCTION__
         );
     }
@@ -341,7 +341,7 @@ trait RulesTrait
     public static function regex(string $regex): static
     {
         return new static(
-            fn($value): bool => preg_match($regex, (string) $value) === 1,
+            fn(mixed $value): bool => preg_match($regex, (string) $value) === 1,
             __FUNCTION__,
             [$regex]
         );
@@ -354,7 +354,7 @@ trait RulesTrait
     public static function required(): static
     {
         return new static(
-            fn($value): bool => $value !== null && $value !== '' && $value !== [],
+            fn(mixed $value): bool => $value !== null && $value !== '' && $value !== [],
             __FUNCTION__,
             [],
             false
@@ -368,7 +368,7 @@ trait RulesTrait
     public static function url(): static
     {
         return new static(
-            fn($value): bool => filter_var($value, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE) !== null,
+            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
