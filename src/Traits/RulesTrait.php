@@ -22,6 +22,7 @@ use function
     filter_var,
     implode,
     in_array,
+    is_scalar,
     preg_match,
     strlen;
 
@@ -38,7 +39,7 @@ trait RulesTrait
     public static function alpha(): static
     {
         return new static(
-            fn($value): bool => ctype_alpha($value),
+            fn($value): bool => is_scalar($value) && ctype_alpha($value),
             __FUNCTION__
         );
     }
@@ -50,7 +51,7 @@ trait RulesTrait
     public static function alphaNumeric(): static
     {
         return new static(
-            fn($value): bool => ctype_alnum($value),
+            fn($value): bool => is_scalar($value) && ctype_alnum($value),
             __FUNCTION__
         );
     }
@@ -62,7 +63,7 @@ trait RulesTrait
     public static function ascii(): static
     {
         return new static(
-            fn($value): bool => ctype_print($value),
+            fn($value): bool => is_scalar($value) && ctype_print($value),
             __FUNCTION__
         );
     }
@@ -327,7 +328,7 @@ trait RulesTrait
     public static function naturalNumber(): static
     {
         return new static(
-            fn($value): bool => ctype_digit($value),
+            fn($value): bool => is_scalar($value) && ctype_digit($value),
             __FUNCTION__
         );
     }
