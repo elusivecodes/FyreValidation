@@ -19,9 +19,12 @@ final class RulesTest extends TestCase
         AsciiTest,
         BetweenTest,
         BooleanTest,
+        DateTest,
+        DateTimeTest,
         DecimalTest,
         DiffersTest,
         EmailTest,
+        EmptyTest,
         EqualsTest,
         ExactLengthTest,
         GreaterThanOrEqualsTest,
@@ -39,6 +42,7 @@ final class RulesTest extends TestCase
         NaturalNumberTest,
         RegexTest,
         RequiredTest,
+        TimeTest,
         UrlTest;
 
     public static function setUpBeforeClass(): void

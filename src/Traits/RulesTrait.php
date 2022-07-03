@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Fyre\Validation\Traits;
 
+use
+    Fyre\DB\TypeParser;
+
 use const
     FILTER_FLAG_EMAIL_UNICODE,
     FILTER_FLAG_IPV4,
@@ -96,6 +99,30 @@ trait RulesTrait
     }
 
     /**
+     * Create a "date" Rule.
+     * @return Rule The Rule.
+     */
+    public static function date(): static
+    {
+        return new static(
+            fn(mixed $value): bool => !$value || TypeParser::getType('date')->parse($value) !== null,
+            __FUNCTION__
+        );
+    }
+
+    /**
+     * Create a "date/time" Rule.
+     * @return Rule The Rule.
+     */
+    public static function dateTime(): static
+    {
+        return new static(
+            fn(mixed $value): bool => !$value || TypeParser::getType('datetime')->parse($value) !== null,
+            __FUNCTION__
+        );
+    }
+
+    /**
      * Create a "decimal" Rule.
      * @return Rule The Rule.
      */
@@ -130,6 +157,20 @@ trait RulesTrait
         return new static(
             fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE | FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
+        );
+    }
+
+    /**
+     * Create an "empty" Rule.
+     * @return Rule The Rule.
+     */
+    public static function empty(): static
+    {
+        return new static(
+            fn(mixed $value): bool => $value === null || $value === '' || $value === [],
+            __FUNCTION__,
+            [],
+            false
         );
     }
 
@@ -358,6 +399,18 @@ trait RulesTrait
             __FUNCTION__,
             [],
             false
+        );
+    }
+
+    /**
+     * Create a "time" Rule.
+     * @return Rule The Rule.
+     */
+    public static function time(): static
+    {
+        return new static(
+            fn(mixed $value): bool => !$value || TypeParser::getType('time')->parse($value) !== null,
+            __FUNCTION__
         );
     }
 

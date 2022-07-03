@@ -122,6 +122,22 @@ Create a "decimal" *Rule*.
 Rule::decimal();
 ```
 
+**Date**
+
+Create a "date" *Rule*.
+
+```php
+Rule::date();
+```
+
+**DateTime**
+
+Create a "date/time" *Rule*.
+
+```php
+Rule::dateTime();
+```
+
 **Differs**
 
 Create a "differs" *Rule*.
@@ -138,6 +154,14 @@ Create an "email" *Rule*.
 
 ```php
 Rule::email();
+```
+
+**Empty**
+
+Create an "empty" *Rule*.
+
+```php
+Rule::empty();
 ```
 
 **Equals**
@@ -296,6 +320,14 @@ Create a "required" *Rule*.
 
 ```php
 Rule::required();
+```
+
+**Time**
+
+Create a "time" *Rule*.
+
+```php
+Rule::time();
 ```
 
 **Url**
