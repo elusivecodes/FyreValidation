@@ -42,7 +42,7 @@ trait RulesTrait
     public static function alpha(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_alpha($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_alpha((string) $value),
             __FUNCTION__
         );
     }
@@ -54,7 +54,7 @@ trait RulesTrait
     public static function alphaNumeric(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_alnum($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_alnum((string) $value),
             __FUNCTION__
         );
     }
@@ -66,7 +66,7 @@ trait RulesTrait
     public static function ascii(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_print($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_print((string) $value),
             __FUNCTION__
         );
     }
@@ -369,7 +369,7 @@ trait RulesTrait
     public static function naturalNumber(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_digit($value),
+            fn(mixed $value): bool => is_scalar($value) && ctype_digit((string) $value),
             __FUNCTION__
         );
     }
