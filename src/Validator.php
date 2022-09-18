@@ -63,6 +63,16 @@ class Validator
     }
 
     /**
+     * Get the rules for a field.
+     * @param string $field The field name.
+     * @return array The rules.
+     */
+    public function getFieldRules(string $field): array
+    {
+        return $this->fields[$field] ?? [];
+    }
+
+    /**
      * Perform validation and return any errors.
      * @param array $data The data to validate.
      * @param string|null $type The type of validation to perform.

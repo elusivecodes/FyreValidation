@@ -5,6 +5,7 @@ namespace Tests\Rules;
 
 use
     Fyre\Lang\Lang,
+    Fyre\Validation\Rule,
     Fyre\Validation\Validator,
     PHPUnit\Framework\TestCase;
 
@@ -44,6 +45,26 @@ final class RulesTest extends TestCase
         RequiredTest,
         TimeTest,
         UrlTest;
+
+    public function testGetArguments(): void
+    {
+        $rule = Rule::between(5, 10);
+
+        $this->assertSame(
+            [5, 10],
+            $rule->getArguments()
+        );
+    }
+    
+    public function testGetName(): void
+    {
+        $rule = Rule::alpha();
+
+        $this->assertSame(
+            'alpha',
+            $rule->getName()
+        );
+    }
 
     public static function setUpBeforeClass(): void
     {

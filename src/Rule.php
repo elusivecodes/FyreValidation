@@ -72,6 +72,15 @@ class Rule
     }
 
     /**
+     * Get the callback arguments.
+     * @return array The callback arguments.
+     */
+    public function getArguments(): array
+    {
+        return $this->arguments;
+    }
+
+    /**
      * Get the rule error message.
      * @param string $field The field name.
      * @return string The error message.
@@ -92,6 +101,15 @@ class Rule
         $arguments['field'] = $field;
 
         return Lang::get($langKey, $arguments) ?? 'invalid';
+    }
+
+    /**
+     * Get the rule name.
+     * @return string|null The rule name.
+     */
+    public function getName(): string|null
+    {
+        return $this->name;
     }
 
     /**

@@ -181,6 +181,29 @@ final class ValidatorTest extends TestCase
         );
     }
 
+    public function testGetFieldRules(): void
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
+
+        $rules = $this->validator->getFieldRules('test');
+
+        $this->assertCount(
+            2,
+            $rules
+        );
+
+        $this->assertInstanceOf(
+            Rule::class,
+            $rules[0]
+        );
+
+        $this->assertInstanceOf(
+            Rule::class,
+            $rules[1]
+        );
+    }
+
     public static function setUpBeforeClass(): void
     {
         Lang::clear();

@@ -57,6 +57,16 @@ Clear all rules from the *Validator*.
 $validator->clear();
 ```
 
+**Get Field Rules**
+
+Get the rules for a field.
+
+- `$field` is a string representing the field name.
+
+```php
+$rules = $validator->getFieldRules($field);
+``` 
+
 **Validate**
 
 Perform validation and return any errors.
