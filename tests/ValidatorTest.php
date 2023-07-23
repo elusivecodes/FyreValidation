@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Lang\Lang,
-    Fyre\Validation\Rule,
-    Fyre\Validation\Validator,
-    PHPUnit\Framework\TestCase;
+use Fyre\Lang\Lang;
+use Fyre\Validation\Rule;
+use Fyre\Validation\Validator;
+use PHPUnit\Framework\TestCase;
 
 final class ValidatorTest extends TestCase
 {
@@ -201,6 +200,53 @@ final class ValidatorTest extends TestCase
         $this->assertInstanceOf(
             Rule::class,
             $rules[1]
+        );
+    }
+
+    public function testRemove()
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
+
+        $this->assertTrue(
+            $this->validator->remove('test')
+        );
+
+        $this->assertEmpty(
+            $this->validator->getFieldRules('test')
+        );
+    }
+
+    public function testRemoveRule()
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
+
+        $this->assertTrue(
+            $this->validator->remove('test', 'greaterThan')
+        );
+
+        $rules = $this->validator->getFieldRules('test');
+
+        $this->assertCount(
+            1,
+            $rules
+        );
+    }
+
+    public function testRemoveInvalid()
+    {
+        $this->assertFalse(
+            $this->validator->remove('test', 'greaterThan')
+        );
+    }
+
+    public function testRemoveRuleInvalid()
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+
+        $this->assertFalse(
+            $this->validator->remove('test', 'greaterThan')
         );
     }
 

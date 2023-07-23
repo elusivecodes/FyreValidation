@@ -3,54 +3,52 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\DateTime\DateTime,
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait DateTimeTest
+trait MinLengthTestTrait
 {
 
-    public function testDateTime(): void
+    public function testMinLength(): void
     {
-        $this->validator->add('test', Rule::dateTime());
+        $this->validator->add('test', Rule::minLength(3));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => DateTime::now()
+                'test' => 'test'
             ])
         );
     }
 
-    public function testDateTimeString(): void
+    public function testMinLengthExact(): void
     {
-        $this->validator->add('test', Rule::dateTime());
+        $this->validator->add('test', Rule::minLength(3));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '2022-01-01 00:00:00'
+                'test' => '123'
             ])
         );
     }
 
-    public function testDateTimeInvalid(): void
+    public function testMinLengthInvalid(): void
     {
-        $this->validator->add('test', Rule::dateTime());
+        $this->validator->add('test', Rule::minLength(3));
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'a'
             ])
         );
     }
 
-    public function testDateTimeMissing(): void
+    public function testMinLengthMissing(): void
     {
-        $this->validator->add('test', Rule::dateTime());
+        $this->validator->add('test', Rule::minLength(3));
 
         $this->assertSame(
             [],
@@ -58,9 +56,9 @@ trait DateTimeTest
         );
     }
 
-    public function testDateTimeEmpty(): void
+    public function testMinLengthEmpty(): void
     {
-        $this->validator->add('test', Rule::dateTime());
+        $this->validator->add('test', Rule::minLength(3));
 
         $this->assertSame(
             [],

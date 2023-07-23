@@ -3,54 +3,52 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\DateTime\DateTime,
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait DateTest
+trait GreaterThanOrEqualsTestTrait
 {
 
-    public function testDate(): void
+    public function testGreaterThanOrEquals(): void
     {
-        $this->validator->add('test', Rule::date());
+        $this->validator->add('test', Rule::greaterThanOrEquals(2));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => DateTime::now()
+                'test' => 3
             ])
         );
     }
 
-    public function testDateString(): void
+    public function testGreaterThanOrEqualsEquals(): void
     {
-        $this->validator->add('test', Rule::date());
+        $this->validator->add('test', Rule::greaterThanOrEquals(2));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '2022-01-01'
+                'test' => 2
             ])
         );
     }
 
-    public function testDateInvalid(): void
+    public function testGreaterThanOrEqualsBelow(): void
     {
-        $this->validator->add('test', Rule::date());
+        $this->validator->add('test', Rule::greaterThanOrEquals(2));
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 1
             ])
         );
     }
 
-    public function testDateMissing(): void
+    public function testGreaterThanOrEqualsMissing(): void
     {
-        $this->validator->add('test', Rule::date());
+        $this->validator->add('test', Rule::greaterThanOrEquals(2));
 
         $this->assertSame(
             [],
@@ -58,9 +56,9 @@ trait DateTest
         );
     }
 
-    public function testDateEmpty(): void
+    public function testGreaterThanOrEqualsEmpty(): void
     {
-        $this->validator->add('test', Rule::date());
+        $this->validator->add('test', Rule::greaterThanOrEquals(2));
 
         $this->assertSame(
             [],

@@ -3,16 +3,15 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\DateTime\DateTime,
-    Fyre\Validation\Rule;
+use Fyre\DateTime\DateTime;
+use Fyre\Validation\Rule;
 
-trait TimeTest
+trait DateTimeTestTrait
 {
 
-    public function testTime(): void
+    public function testDateTime(): void
     {
-        $this->validator->add('test', Rule::time());
+        $this->validator->add('test', Rule::dateTime());
 
         $this->assertSame(
             [],
@@ -22,21 +21,21 @@ trait TimeTest
         );
     }
 
-    public function testTimeString(): void
+    public function testDateTimeString(): void
     {
-        $this->validator->add('test', Rule::time());
+        $this->validator->add('test', Rule::dateTime());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '00:00:00'
+                'test' => '2022-01-01 00:00:00'
             ])
         );
     }
 
-    public function testTimeInvalid(): void
+    public function testDateTimeInvalid(): void
     {
-        $this->validator->add('test', Rule::time());
+        $this->validator->add('test', Rule::dateTime());
 
         $this->assertSame(
             [
@@ -48,9 +47,9 @@ trait TimeTest
         );
     }
 
-    public function testTimeMissing(): void
+    public function testDateTimeMissing(): void
     {
-        $this->validator->add('test', Rule::time());
+        $this->validator->add('test', Rule::dateTime());
 
         $this->assertSame(
             [],
@@ -58,9 +57,9 @@ trait TimeTest
         );
     }
 
-    public function testTimeEmpty(): void
+    public function testDateTimeEmpty(): void
     {
-        $this->validator->add('test', Rule::time());
+        $this->validator->add('test', Rule::dateTime());
 
         $this->assertSame(
             [],

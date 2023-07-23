@@ -3,41 +3,40 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait ExactLengthTest
+trait AsciiTestTrait
 {
 
-    public function testExactLength(): void
+    public function testAscii(): void
     {
-        $this->validator->add('test', Rule::exactLength(3));
+        $this->validator->add('test', Rule::ascii());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '123'
+                'test' => 'test123!'
             ])
         );
     }
 
-    public function testExactLengthInvalid(): void
+    public function testAsciiInvalid(): void
     {
-        $this->validator->add('test', Rule::exactLength(3));
+        $this->validator->add('test', Rule::ascii());
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid♫'
             ])
         );
     }
 
-    public function testExactLengthMissing(): void
+    public function testAsciiMissing(): void
     {
-        $this->validator->add('test', Rule::exactLength(3));
+        $this->validator->add('test', Rule::ascii());
 
         $this->assertSame(
             [],
@@ -45,9 +44,9 @@ trait ExactLengthTest
         );
     }
 
-    public function testExactLengthEmpty(): void
+    public function testAsciiEmpty(): void
     {
-        $this->validator->add('test', Rule::exactLength(3));
+        $this->validator->add('test', Rule::ascii());
 
         $this->assertSame(
             [],

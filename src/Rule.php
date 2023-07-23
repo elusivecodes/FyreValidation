@@ -3,13 +3,11 @@ declare(strict_types=1);
 
 namespace Fyre\Validation;
 
-use
-    Closure,
-    Fyre\Lang\Lang,
-    Fyre\Validation\Traits\RulesTrait;
+use Closure;
+use Fyre\Lang\Lang;
+use Fyre\Validation\Traits\RulesTrait;
 
-use function
-    strtolower;
+use function strtolower;
 
 /**
  * Rule

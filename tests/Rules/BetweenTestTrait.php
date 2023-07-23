@@ -3,81 +3,78 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait NaturalNumberTest
+trait BetweenTestTrait
 {
 
-    public function testNaturalNumber(): void
+    public function testBetween(): void
     {
-        $this->validator->add('test', Rule::naturalNumber());
+        $this->validator->add('test', Rule::between(5, 10));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '123'
+                'test' => '7'
             ])
         );
     }
 
-    public function testNaturalNumberZero(): void
+    public function testBetweenLower(): void
     {
-        $this->validator->add('test', Rule::naturalNumber());
+        $this->validator->add('test', Rule::between(5, 10));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '0'
+                'test' => '5'
             ])
         );
     }
 
-    public function testNaturalNumberNegative(): void
+    public function testBetweenUpper(): void
     {
-        $this->validator->add('test', Rule::naturalNumber());
+        $this->validator->add('test', Rule::between(5, 10));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '10'
+            ])
+        );
+    }
+
+    public function testBetweenBelow(): void
+    {
+        $this->validator->add('test', Rule::between(5, 10));
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => '-123'
+                'test' => '1'
             ])
         );
     }
 
-    public function testNaturalNumberDecimal(): void
+    public function testBetweenAbove(): void
     {
-        $this->validator->add('test', Rule::naturalNumber());
+        $this->validator->add('test', Rule::between(5, 10));
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => '123.456'
+                'test' => '12'
             ])
         );
     }
 
-    public function testNaturalNumberInvalid(): void
+    public function testBetweenMissing(): void
     {
-        $this->validator->add('test', Rule::naturalNumber());
-
-        $this->assertSame(
-            [
-                'test' => ['invalid']
-            ],
-            $this->validator->validate([
-                'test' => 'invalid'
-            ])
-        );
-    }
-
-    public function testNaturalNumberMissing(): void
-    {
-        $this->validator->add('test', Rule::naturalNumber());
+        $this->validator->add('test', Rule::between(5, 10));
 
         $this->assertSame(
             [],
@@ -85,9 +82,9 @@ trait NaturalNumberTest
         );
     }
 
-    public function testNaturalNumberEmpty(): void
+    public function testBetweenEmpty(): void
     {
-        $this->validator->add('test', Rule::naturalNumber());
+        $this->validator->add('test', Rule::between(5, 10));
 
         $this->assertSame(
             [],

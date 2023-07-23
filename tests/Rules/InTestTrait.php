@@ -3,41 +3,40 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait AsciiTest
+trait InTestTrait
 {
 
-    public function testAscii(): void
+    public function TestIn(): void
     {
-        $this->validator->add('test', Rule::ascii());
+        $this->validator->add('test', Rule::in(['test', 'other']));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test123!'
+                'test' => 'test'
             ])
         );
     }
 
-    public function testAsciiInvalid(): void
+    public function TestInInvalid(): void
     {
-        $this->validator->add('test', Rule::ascii());
+        $this->validator->add('test', Rule::in(['test', 'other']));
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 'invalid♫'
+                'test' => 'invalid'
             ])
         );
     }
 
-    public function testAsciiMissing(): void
+    public function TestInMissing(): void
     {
-        $this->validator->add('test', Rule::ascii());
+        $this->validator->add('test', Rule::in(['test', 'other']));
 
         $this->assertSame(
             [],
@@ -45,9 +44,9 @@ trait AsciiTest
         );
     }
 
-    public function testAsciiEmpty(): void
+    public function TestInEmpty(): void
     {
-        $this->validator->add('test', Rule::ascii());
+        $this->validator->add('test', Rule::in(['test', 'other']));
 
         $this->assertSame(
             [],

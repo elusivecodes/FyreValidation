@@ -3,55 +3,53 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\DateTime\DateTime;
+use Fyre\Validation\Rule;
 
-trait LessThanTest
+trait TimeTestTrait
 {
 
-    public function testLessThan(): void
+    public function testTime(): void
     {
-        $this->validator->add('test', Rule::lessThan(2));
+        $this->validator->add('test', Rule::time());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 1
+                'test' => DateTime::now()
             ])
         );
     }
 
-    public function testLessThanEquals(): void
+    public function testTimeString(): void
     {
-        $this->validator->add('test', Rule::lessThan(2));
+        $this->validator->add('test', Rule::time());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '00:00:00'
+            ])
+        );
+    }
+
+    public function testTimeInvalid(): void
+    {
+        $this->validator->add('test', Rule::time());
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 2
+                'test' => 'invalid'
             ])
         );
     }
 
-    public function testLessThanAbove(): void
+    public function testTimeMissing(): void
     {
-        $this->validator->add('test', Rule::lessThan(2));
-
-        $this->assertSame(
-            [
-                'test' => ['invalid']
-            ],
-            $this->validator->validate([
-                'test' => 3
-            ])
-        );
-    }
-
-    public function testLessThanMissing(): void
-    {
-        $this->validator->add('test', Rule::lessThan(2));
+        $this->validator->add('test', Rule::time());
 
         $this->assertSame(
             [],
@@ -59,9 +57,9 @@ trait LessThanTest
         );
     }
 
-    public function testLessThanEmpty(): void
+    public function testTimeEmpty(): void
     {
-        $this->validator->add('test', Rule::lessThan(2));
+        $this->validator->add('test', Rule::time());
 
         $this->assertSame(
             [],

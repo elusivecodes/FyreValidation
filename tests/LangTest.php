@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Lang\Lang,
-    Fyre\Validation\Rule,
-    Fyre\Validation\Validator,
-    PHPUnit\Framework\TestCase;
+use Fyre\Lang\Lang;
+use Fyre\Validation\Rule;
+use Fyre\Validation\Validator;
+use PHPUnit\Framework\TestCase;
 
 final class LangTest extends TestCase
 {

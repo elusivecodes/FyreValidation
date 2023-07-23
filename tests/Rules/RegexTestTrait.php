@@ -3,15 +3,14 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait InTest
+trait RegexTestTrait
 {
 
-    public function TestIn(): void
+    public function testRegex(): void
     {
-        $this->validator->add('test', Rule::in(['test', 'other']));
+        $this->validator->add('test', Rule::regex('/test/'));
 
         $this->assertSame(
             [],
@@ -21,9 +20,9 @@ trait InTest
         );
     }
 
-    public function TestInInvalid(): void
+    public function testRegexInvalid(): void
     {
-        $this->validator->add('test', Rule::in(['test', 'other']));
+        $this->validator->add('test', Rule::regex('/test/'));
 
         $this->assertSame(
             [
@@ -35,9 +34,9 @@ trait InTest
         );
     }
 
-    public function TestInMissing(): void
+    public function testRegexMissing(): void
     {
-        $this->validator->add('test', Rule::in(['test', 'other']));
+        $this->validator->add('test', Rule::regex('/test/'));
 
         $this->assertSame(
             [],
@@ -45,9 +44,9 @@ trait InTest
         );
     }
 
-    public function TestInEmpty(): void
+    public function testRegexEmpty(): void
     {
-        $this->validator->add('test', Rule::in(['test', 'other']));
+        $this->validator->add('test', Rule::regex('/test/'));
 
         $this->assertSame(
             [],

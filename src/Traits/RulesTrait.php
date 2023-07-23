@@ -3,31 +3,28 @@ declare(strict_types=1);
 
 namespace Fyre\Validation\Traits;
 
-use
-    Fyre\DB\TypeParser;
+use Fyre\DB\TypeParser;
 
-use const
-    FILTER_FLAG_EMAIL_UNICODE,
-    FILTER_FLAG_IPV4,
-    FILTER_FLAG_IPV6,
-    FILTER_NULL_ON_FAILURE,
-    FILTER_VALIDATE_BOOLEAN,
-    FILTER_VALIDATE_EMAIL,
-    FILTER_VALIDATE_FLOAT,
-    FILTER_VALIDATE_INT,
-    FILTER_VALIDATE_IP;
+use const FILTER_FLAG_EMAIL_UNICODE;
+use const FILTER_FLAG_IPV4;
+use const FILTER_FLAG_IPV6;
+use const FILTER_NULL_ON_FAILURE;
+use const FILTER_VALIDATE_BOOLEAN;
+use const FILTER_VALIDATE_EMAIL;
+use const FILTER_VALIDATE_FLOAT;
+use const FILTER_VALIDATE_INT;
+use const FILTER_VALIDATE_IP;
 
-use function
-    ctype_alnum,
-    ctype_alpha,
-    ctype_digit,
-    ctype_print,
-    filter_var,
-    implode,
-    in_array,
-    is_scalar,
-    preg_match,
-    strlen;
+use function ctype_alnum;
+use function ctype_alpha;
+use function ctype_digit;
+use function ctype_print;
+use function filter_var;
+use function implode;
+use function in_array;
+use function is_scalar;
+use function preg_match;
+use function strlen;
 
 /**
  * RulesTrait
@@ -105,7 +102,7 @@ trait RulesTrait
     public static function date(): static
     {
         return new static(
-            fn(mixed $value): bool => !$value || TypeParser::getType('date')->parse($value) !== null,
+            fn(mixed $value): bool => !$value || TypeParser::use('date')->parse($value) !== null,
             __FUNCTION__
         );
     }
@@ -117,7 +114,7 @@ trait RulesTrait
     public static function dateTime(): static
     {
         return new static(
-            fn(mixed $value): bool => !$value || TypeParser::getType('datetime')->parse($value) !== null,
+            fn(mixed $value): bool => !$value || TypeParser::use('datetime')->parse($value) !== null,
             __FUNCTION__
         );
     }
@@ -397,8 +394,7 @@ trait RulesTrait
         return new static(
             fn(mixed $value): bool => $value !== null && $value !== '' && $value !== [],
             __FUNCTION__,
-            [],
-            false
+            skipEmpty: false
         );
     }
 
@@ -409,7 +405,7 @@ trait RulesTrait
     public static function time(): static
     {
         return new static(
-            fn(mixed $value): bool => !$value || TypeParser::getType('time')->parse($value) !== null,
+            fn(mixed $value): bool => !$value || TypeParser::use('time')->parse($value) !== null,
             __FUNCTION__
         );
     }

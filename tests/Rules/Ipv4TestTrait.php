@@ -3,53 +3,54 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait MinLengthTest
+trait Ipv4TestTrait
 {
 
-    public function testMinLength(): void
+    public function testIpv4(): void
     {
-        $this->validator->add('test', Rule::minLength(3));
+        $this->validator->add('test', Rule::ipv4());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => '1.1.1.1'
             ])
         );
     }
 
-    public function testMinLengthExact(): void
+    public function testIpv4WithV6(): void
     {
-        $this->validator->add('test', Rule::minLength(3));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '123'
-            ])
-        );
-    }
-
-    public function testMinLengthInvalid(): void
-    {
-        $this->validator->add('test', Rule::minLength(3));
+        $this->validator->add('test', Rule::ipv4());
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 'a'
+                'test' => '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
             ])
         );
     }
 
-    public function testMinLengthMissing(): void
+    public function testIpv4Invalid(): void
     {
-        $this->validator->add('test', Rule::minLength(3));
+        $this->validator->add('test', Rule::ipv4());
+
+        $this->assertSame(
+            [
+                'test' => ['invalid']
+            ],
+            $this->validator->validate([
+                'test' => 'invalid'
+            ])
+        );
+    }
+
+    public function testIpv4Missing(): void
+    {
+        $this->validator->add('test', Rule::ipv4());
 
         $this->assertSame(
             [],
@@ -57,9 +58,9 @@ trait MinLengthTest
         );
     }
 
-    public function testMinLengthEmpty(): void
+    public function testIpv4Empty(): void
     {
-        $this->validator->add('test', Rule::minLength(3));
+        $this->validator->add('test', Rule::ipv4());
 
         $this->assertSame(
             [],

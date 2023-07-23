@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait EqualsTest
+trait EqualsTestTrait
 {
 
     public function testEquals(): void

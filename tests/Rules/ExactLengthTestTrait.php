@@ -3,27 +3,26 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait RegexTest
+trait ExactLengthTestTrait
 {
 
-    public function testRegex(): void
+    public function testExactLength(): void
     {
-        $this->validator->add('test', Rule::regex('/test/'));
+        $this->validator->add('test', Rule::exactLength(3));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => '123'
             ])
         );
     }
 
-    public function testRegexInvalid(): void
+    public function testExactLengthInvalid(): void
     {
-        $this->validator->add('test', Rule::regex('/test/'));
+        $this->validator->add('test', Rule::exactLength(3));
 
         $this->assertSame(
             [
@@ -35,9 +34,9 @@ trait RegexTest
         );
     }
 
-    public function testRegexMissing(): void
+    public function testExactLengthMissing(): void
     {
-        $this->validator->add('test', Rule::regex('/test/'));
+        $this->validator->add('test', Rule::exactLength(3));
 
         $this->assertSame(
             [],
@@ -45,9 +44,9 @@ trait RegexTest
         );
     }
 
-    public function testRegexEmpty(): void
+    public function testExactLengthEmpty(): void
     {
-        $this->validator->add('test', Rule::regex('/test/'));
+        $this->validator->add('test', Rule::exactLength(3));
 
         $this->assertSame(
             [],

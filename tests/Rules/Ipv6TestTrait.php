@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait Ipv6Test
+trait Ipv6TestTrait
 {
 
     public function testIpv6(): void

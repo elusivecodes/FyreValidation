@@ -3,48 +3,46 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Lang\Lang,
-    Fyre\Validation\Rule,
-    Fyre\Validation\Validator,
-    PHPUnit\Framework\TestCase;
+use Fyre\Lang\Lang;
+use Fyre\Validation\Rule;
+use Fyre\Validation\Validator;
+use PHPUnit\Framework\TestCase;
 
 final class RulesTest extends TestCase
 {
 
     protected Validator $validator;
 
-    use
-        AlphaTest,
-        AlphaNumericTest,
-        AsciiTest,
-        BetweenTest,
-        BooleanTest,
-        DateTest,
-        DateTimeTest,
-        DecimalTest,
-        DiffersTest,
-        EmailTest,
-        EmptyTest,
-        EqualsTest,
-        ExactLengthTest,
-        GreaterThanOrEqualsTest,
-        GreaterThanTest,
-        InTest,
-        IntegerTest,
-        IpTest,
-        Ipv4Test,
-        Ipv6Test,
-        LessThanOrEqualsTest,
-        LessThanTest,
-        MatchesTest,
-        MaxLengthTest,
-        MinLengthTest,
-        NaturalNumberTest,
-        RegexTest,
-        RequiredTest,
-        TimeTest,
-        UrlTest;
+    use AlphaTestTrait;
+    use AlphaNumericTestTrait;
+    use AsciiTestTrait;
+    use BetweenTestTrait;
+    use BooleanTestTrait;
+    use DateTestTrait;
+    use DateTimeTestTrait;
+    use DecimalTestTrait;
+    use DiffersTestTrait;
+    use EmailTestTrait;
+    use EmptyTestTrait;
+    use EqualsTestTrait;
+    use ExactLengthTestTrait;
+    use GreaterThanOrEqualsTestTrait;
+    use GreaterThanTestTrait;
+    use InTestTrait;
+    use IntegerTestTrait;
+    use IpTestTrait;
+    use Ipv4TestTrait;
+    use Ipv6TestTrait;
+    use LessThanOrEqualsTestTrait;
+    use LessThanTestTrait;
+    use MatchesTestTrait;
+    use MaxLengthTestTrait;
+    use MinLengthTestTrait;
+    use NaturalNumberTestTrait;
+    use RegexTestTrait;
+    use RequiredTestTrait;
+    use TimeTestTrait;
+    use UrlTestTrait;
 
     public function testGetArguments(): void
     {

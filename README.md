@@ -1,6 +1,6 @@
 # FyreValidation
 
-**FyreValidation** is a free, validation library for *PHP*.
+**FyreValidation** is a free, open-source validation library for *PHP*.
 
 
 ## Table Of Contents
@@ -66,6 +66,23 @@ Get the rules for a field.
 ```php
 $rules = $validator->getFieldRules($field);
 ``` 
+
+**Remove**
+
+Remove a validation rule.
+
+- `$field` is a string representing the field name.
+- `$name` is a string representing the rule name.
+
+```php
+$removed = $validator->remove($field, $name);
+```
+
+If the `$name` argument is omitted, all rules will be removed instead.
+
+```php
+$validator->remove($field);
+```
 
 **Validate**
 

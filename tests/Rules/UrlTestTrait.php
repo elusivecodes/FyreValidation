@@ -3,41 +3,40 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait AlphaNumericTest
+trait UrlTestTrait
 {
 
-    public function testAlphaNumeric(): void
+    public function testUrl(): void
     {
-        $this->validator->add('test', Rule::alphaNumeric());
+        $this->validator->add('test', Rule::url());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test123'
+                'test' => 'https://test.com/'
             ])
         );
     }
 
-    public function testAlphaNumericInvalid(): void
+    public function testUrlInvalid(): void
     {
-        $this->validator->add('test', Rule::alphaNumeric());
+        $this->validator->add('test', Rule::url());
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 'invalid123!'
+                'test' => 'invalid'
             ])
         );
     }
 
-    public function testAlphaNumericMissing(): void
+    public function testUrlMissing(): void
     {
-        $this->validator->add('test', Rule::alphaNumeric());
+        $this->validator->add('test', Rule::url());
 
         $this->assertSame(
             [],
@@ -45,9 +44,9 @@ trait AlphaNumericTest
         );
     }
 
-    public function testAlphaNumericEmpty(): void
+    public function testUrlEmpty(): void
     {
-        $this->validator->add('test', Rule::alphaNumeric());
+        $this->validator->add('test', Rule::url());
 
         $this->assertSame(
             [],

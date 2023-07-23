@@ -3,53 +3,54 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
-use
-    Fyre\Validation\Rule;
+use Fyre\Validation\Rule;
 
-trait MaxLengthTest
+trait GreaterThanTestTrait
 {
 
-    public function testMaxLength(): void
+    public function testGreaterThan(): void
     {
-        $this->validator->add('test', Rule::maxLength(3));
+        $this->validator->add('test', Rule::greaterThan(2));
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'a'
+                'test' => 3
             ])
         );
     }
 
-    public function testMaxLengthExact(): void
+    public function testGreaterThanEquals(): void
     {
-        $this->validator->add('test', Rule::maxLength(3));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '123'
-            ])
-        );
-    }
-
-    public function testMaxLengthInvalid(): void
-    {
-        $this->validator->add('test', Rule::maxLength(3));
+        $this->validator->add('test', Rule::greaterThan(2));
 
         $this->assertSame(
             [
                 'test' => ['invalid']
             ],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 2
             ])
         );
     }
 
-    public function testMaxLengthMissing(): void
+    public function testGreaterThanBelow(): void
     {
-        $this->validator->add('test', Rule::maxLength(3));
+        $this->validator->add('test', Rule::greaterThan(2));
+
+        $this->assertSame(
+            [
+                'test' => ['invalid']
+            ],
+            $this->validator->validate([
+                'test' => 1
+            ])
+        );
+    }
+
+    public function testGreaterThanMissing(): void
+    {
+        $this->validator->add('test', Rule::greaterThan(2));
 
         $this->assertSame(
             [],
@@ -57,9 +58,9 @@ trait MaxLengthTest
         );
     }
 
-    public function testMaxLengthEmpty(): void
+    public function testGreaterThanEmpty(): void
     {
-        $this->validator->add('test', Rule::maxLength(3));
+        $this->validator->add('test', Rule::greaterThan(2));
 
         $this->assertSame(
             [],

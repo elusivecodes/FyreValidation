@@ -3,12 +3,11 @@ declare(strict_types=1);
 
 namespace Fyre\Validation;
 
-use
-    Closure;
+use Closure;
 
-use function
-    array_merge,
-    array_unique;
+use function array_key_exists;
+use function array_merge;
+use function array_unique;
 
 /**
  * Validator
@@ -70,6 +69,49 @@ class Validator
     public function getFieldRules(string $field): array
     {
         return $this->fields[$field] ?? [];
+    }
+
+    /**
+     * Remove a validation rule.
+     * @param string $field The field name.
+     * @param string|null $name The rule name.
+     * @return bool TRUE if the rule was removed, otherwise FALSE.
+     */
+    public function remove(string $field, string|null $name = null): bool
+    {
+        if (!array_key_exists($field, $this->fields)) {
+            return false;
+        }
+
+        if ($name === null) {
+            unset($this->fields[$field]);
+
+            return true;
+        }
+
+        $hasRule = false;
+        $newRules = [];
+
+        foreach ($this->fields[$field] AS $rule) {
+            if ($rule->getName() === $name) {
+                $hasRule |= true;
+                continue;
+            }
+
+            $newRules[] = $rule;
+        }
+
+        if (!$hasRule) {
+            return false;
+        }
+
+        if ($newRules === []) {
+            unset($this->fields[$field]);
+        } else {
+            $this->fields[$field] = $newRules;
+        }
+
+        return true;
     }
 
     /**
