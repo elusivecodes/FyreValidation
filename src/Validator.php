@@ -6,7 +6,6 @@ namespace Fyre\Validation;
 use Closure;
 
 use function array_key_exists;
-use function array_merge;
 use function array_unique;
 
 /**
