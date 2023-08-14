@@ -203,7 +203,7 @@ final class ValidatorTest extends TestCase
         );
     }
 
-    public function testRemove()
+    public function testRemove(): void
     {
         $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
         $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
@@ -217,7 +217,7 @@ final class ValidatorTest extends TestCase
         );
     }
 
-    public function testRemoveRule()
+    public function testRemoveRule(): void
     {
         $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
         $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
@@ -234,14 +234,14 @@ final class ValidatorTest extends TestCase
         );
     }
 
-    public function testRemoveInvalid()
+    public function testRemoveInvalid(): void
     {
         $this->assertFalse(
             $this->validator->remove('test', 'greaterThan')
         );
     }
 
-    public function testRemoveRuleInvalid()
+    public function testRemoveRuleInvalid(): void
     {
         $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
 

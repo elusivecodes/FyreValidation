@@ -49,8 +49,9 @@ class Rule
      * Invoke the rule.
      * @param mixed $value The value to test.
      * @param array $data The validation data.
+     * @return string|bool The error message, or TRUE if the validation was successful, otherwise FALSE.
      */
-    public function __invoke(mixed $value, array $data)
+    public function __invoke(mixed $value, array $data): string|bool
     {
         if ($this->skipEmpty && ($value === null || $value === '' || $value === [])) {
             return true;
