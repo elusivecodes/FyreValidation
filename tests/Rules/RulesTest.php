@@ -39,8 +39,10 @@ final class RulesTest extends TestCase
     use MaxLengthTestTrait;
     use MinLengthTestTrait;
     use NaturalNumberTestTrait;
+    use NotEmptyTestTrait;
     use RegexTestTrait;
     use RequiredTestTrait;
+    use RequirePresenceTestTrait;
     use TimeTestTrait;
     use UrlTestTrait;
 

@@ -331,6 +331,14 @@ Create a "natural number" *Rule*.
 Rule::naturalNumber();
 ```
 
+**Not Empty**
+
+Create an "not empty" *Rule*.
+
+```php
+Rule::notEmpty();
+```
+
 **Regex**
 
 Create a "regular expression" *Rule*.
@@ -347,6 +355,14 @@ Create a "required" *Rule*.
 
 ```php
 Rule::required();
+```
+
+**Require Presence**
+
+Create a "require presence" *Rule*.
+
+```php
+Rule::requirePresence();
 ```
 
 **Time**

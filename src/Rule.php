@@ -21,43 +21,43 @@ class Rule
 
     protected array $arguments;
 
-    protected bool $skipEmpty = false;
+    protected bool $skipEmpty = true;
+
+    protected bool $skipNotSet = true;
 
     protected string|null $type = null;
 
     protected string|null $message = null;
 
-    use
-        RulesTrait;
+    use RulesTrait;
 
     /**
      * New Rule constructor.
      * @param Closure $callback The callback.
      * @param string|null $name The rule name.
      * @param array $arguments The callback arguments.
-     * @param bool $skipEmpty Whether to skip the rule for empty values.
+     * @param bool $skipEmpty Whether to skip validation for empty values.
+     * @param bool $skipNotSet Whether to skip validation for unset values.
      */
-    public function __construct(Closure $callback, string|null $name = null, array $arguments = [], bool $skipEmpty = true)
+    public function __construct(Closure $callback, string|null $name = null, array $arguments = [], bool $skipEmpty = true, bool $skipNotSet = true)
     {
         $this->callback = $callback;
         $this->name = $name;
         $this->arguments = $arguments;
         $this->skipEmpty = $skipEmpty;
+        $this->skipNotSet = $skipNotSet;
     }
 
     /**
      * Invoke the rule.
      * @param mixed $value The value to test.
      * @param array $data The validation data.
+     * @param string $field The field name.
      * @return string|bool The error message, or TRUE if the validation was successful, otherwise FALSE.
      */
-    public function __invoke(mixed $value, array $data): string|bool
+    public function __invoke(mixed $value, array $data, string $field): string|bool
     {
-        if ($this->skipEmpty && ($value === null || $value === '' || $value === [])) {
-            return true;
-        }
-
-        return $this->callback->__invoke($value, $data);
+        return $this->callback->__invoke($value, $data, $field);
     }
 
     /**
@@ -133,6 +133,24 @@ class Rule
         $this->type = strtolower($type);
 
         return $this;
+    }
+
+    /**
+     * Determine whether to skip empty values.
+     * @return bool TRUE if empty values can be skipped, otherwise FALSE.
+     */
+    public function skipEmpty(): bool
+    {
+        return $this->skipEmpty;
+    }
+
+    /**
+     * Determine whether to skip unset values.
+     * @return bool TRUE if unset values can be skipped, otherwise FALSE.
+     */
+    public function skipNotSet(): bool
+    {
+        return $this->skipNotSet;
     }
 
 }

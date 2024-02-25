@@ -176,6 +176,22 @@ final class ValidatorTest extends TestCase
             [
                 'test' => ['invalid']
             ],
+            $this->validator->validate([
+                'test' => ''
+            ])
+        );
+    }
+
+    public function testSkipNotSet(): void
+    {
+        $this->validator->add('test', function($value) {
+            return false;
+        }, ['skipEmpty' => false, 'skipNotSet' => false]);
+
+        $this->assertSame(
+            [
+                'test' => ['invalid']
+            ],
             $this->validator->validate([])
         );
     }

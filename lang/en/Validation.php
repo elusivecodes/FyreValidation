@@ -24,7 +24,9 @@ return [
     'maxLength' => 'The {field} length must be at most {0}.',
     'minLength' => 'The {field} length must be at least {0}.',
     'naturalNumber' => 'The {field} must be a natural number.',
+    'notEmpty' => 'The {field} must not be empty.',
     'regex' => 'The {field} must match the regular expression {0}.',
     'required' => 'The {field} is required.',
+    'requirePresence' => 'The {field} must be set.',
     'url' => 'The {field} must be a valid URL.'
 ];

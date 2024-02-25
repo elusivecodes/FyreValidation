@@ -33,7 +33,8 @@ class Validator
                 $rule,
                 $options['name'] ?? null,
                 $options['arguments'] ?? [],
-                $options['skipEmpty'] ?? true
+                $options['skipEmpty'] ?? true,
+                $options['skipNotSet'] ?? true
             );
         }
 
@@ -126,13 +127,24 @@ class Validator
         foreach ($this->fields AS $field => $rules) {
             $value = $data[$field] ?? null;
 
+            $hasField = array_key_exists($field, $data);
+            $hasValue = $value !== null && $value !== '' && $value !== [];
+
             $fieldErrors = [];
             foreach ($rules AS $rule) {
                 if (!$rule->checkType($type)) {
                     continue;
                 }
 
-                $result = $rule($value, $data);
+                if (!$hasField && $rule->skipNotSet()) {
+                    continue;
+                }
+
+                if (!$hasValue && $rule->skipEmpty()) {
+                    continue;
+                }
+
+                $result = $rule($value, $data, $field);
 
                 if ($result === true) {
                     continue;

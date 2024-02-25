@@ -15,6 +15,7 @@ use const FILTER_VALIDATE_FLOAT;
 use const FILTER_VALIDATE_INT;
 use const FILTER_VALIDATE_IP;
 
+use function array_key_exists;
 use function ctype_alnum;
 use function ctype_alpha;
 use function ctype_digit;
@@ -164,10 +165,8 @@ trait RulesTrait
     public static function empty(): static
     {
         return new static(
-            fn(mixed $value): bool => $value === null || $value === '' || $value === [],
-            __FUNCTION__,
-            [],
-            false
+            fn(): bool => false,
+            __FUNCTION__
         );
     }
 
@@ -372,6 +371,19 @@ trait RulesTrait
     }
 
     /**
+     * Create a "not empty" Rule.
+     * @return Rule The Rule.
+     */
+    public static function notEmpty(): static
+    {
+        return new static(
+            fn(mixed $value): bool => $value !== null && $value !== '' && $value !== [],
+            __FUNCTION__,
+            skipEmpty: false
+        );
+    }
+
+    /**
      * Create a "regular expression" Rule.
      * @param string $regex The regular expression.
      * @return Rule The Rule.
@@ -392,9 +404,28 @@ trait RulesTrait
     public static function required(): static
     {
         return new static(
-            fn(mixed $value): bool => $value !== null && $value !== '' && $value !== [],
+            fn(mixed $value, array $data, string $field): bool => array_key_exists($field, $data) &&
+                $value !== null &&
+                $value !== '' &&
+                $value !== [],
             __FUNCTION__,
-            skipEmpty: false
+            skipEmpty: false,
+            skipNotSet: false
+        );
+    }
+
+    /**
+     * Create a "require presence" Rule.
+     * @param bool $mustBeSet Whether the key must be set.
+     * @return Rule The Rule.
+     */
+    public static function requirePresence(bool $mustBeSet = false): static
+    {
+        return new static(
+            fn(mixed $value, array $data, string $field): bool => array_key_exists($field, $data),
+            __FUNCTION__,
+            skipEmpty: false,
+            skipNotSet: false
         );
     }
 
