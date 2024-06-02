@@ -56,7 +56,7 @@ class Validator
      * Clear all rules from the Validator.
      * @return Validator The Validator.
      */
-    public function clear(): static
+    public function clear(): void
     {
         $this->fields = [];
     }
