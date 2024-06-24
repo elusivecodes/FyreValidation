@@ -5,16 +5,6 @@ namespace Fyre\Validation\Traits;
 
 use Fyre\DB\TypeParser;
 
-use const FILTER_FLAG_EMAIL_UNICODE;
-use const FILTER_FLAG_IPV4;
-use const FILTER_FLAG_IPV6;
-use const FILTER_NULL_ON_FAILURE;
-use const FILTER_VALIDATE_BOOLEAN;
-use const FILTER_VALIDATE_EMAIL;
-use const FILTER_VALIDATE_FLOAT;
-use const FILTER_VALIDATE_INT;
-use const FILTER_VALIDATE_IP;
-
 use function array_key_exists;
 use function ctype_alnum;
 use function ctype_alpha;
@@ -27,12 +17,21 @@ use function is_scalar;
 use function preg_match;
 use function strlen;
 
+use const FILTER_FLAG_EMAIL_UNICODE;
+use const FILTER_FLAG_IPV4;
+use const FILTER_FLAG_IPV6;
+use const FILTER_NULL_ON_FAILURE;
+use const FILTER_VALIDATE_BOOLEAN;
+use const FILTER_VALIDATE_EMAIL;
+use const FILTER_VALIDATE_FLOAT;
+use const FILTER_VALIDATE_INT;
+use const FILTER_VALIDATE_IP;
+
 /**
  * RulesTrait
  */
 trait RulesTrait
 {
-
     /**
      * Create an "alpha" Rule.
      * @return Rule The Rule.
@@ -452,5 +451,4 @@ trait RulesTrait
             __FUNCTION__
         );
     }
-
 }

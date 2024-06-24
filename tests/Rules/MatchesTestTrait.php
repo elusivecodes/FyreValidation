@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait MatchesTestTrait
 {
-
     public function testMatches(): void
     {
         $this->validator->add('test', Rule::matches('other'));
@@ -17,6 +16,19 @@ trait MatchesTestTrait
             $this->validator->validate([
                 'test' => 'test',
                 'other' => 'test'
+            ])
+        );
+    }
+
+    public function testMatchesBothEmpty(): void
+    {
+        $this->validator->add('test', Rule::matches('other'));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '',
+                'other' => ''
             ])
         );
     }
@@ -36,16 +48,6 @@ trait MatchesTestTrait
         );
     }
 
-    public function testMatchesMissing(): void
-    {
-        $this->validator->add('test', Rule::matches('other'));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([])
-        );
-    }
-
     public function testMatchesEmpty(): void
     {
         $this->validator->add('test', Rule::matches('other'));
@@ -56,6 +58,16 @@ trait MatchesTestTrait
                 'test' => '',
                 'other' => 'test'
             ])
+        );
+    }
+
+    public function testMatchesMissing(): void
+    {
+        $this->validator->add('test', Rule::matches('other'));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([])
         );
     }
 
@@ -73,18 +85,4 @@ trait MatchesTestTrait
             ])
         );
     }
-
-    public function testMatchesBothEmpty(): void
-    {
-        $this->validator->add('test', Rule::matches('other'));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '',
-                'other' => ''
-            ])
-        );
-    }
-
 }

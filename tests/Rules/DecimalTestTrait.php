@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait DecimalTestTrait
 {
-
     public function testDecimal(): void
     {
         $this->validator->add('test', Rule::decimal());
@@ -20,30 +19,6 @@ trait DecimalTestTrait
         );
     }
 
-    public function testDecimalZero(): void
-    {
-        $this->validator->add('test', Rule::decimal());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '0'
-            ])
-        );
-    }
-
-    public function testDecimalNegative(): void
-    {
-        $this->validator->add('test', Rule::decimal());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '-123'
-            ])
-        );
-    }
-
     public function testDecimalDecimal(): void
     {
         $this->validator->add('test', Rule::decimal());
@@ -52,6 +27,18 @@ trait DecimalTestTrait
             [],
             $this->validator->validate([
                 'test' => '123.456'
+            ])
+        );
+    }
+
+    public function testDecimalEmpty(): void
+    {
+        $this->validator->add('test', Rule::decimal());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -80,16 +67,27 @@ trait DecimalTestTrait
         );
     }
 
-    public function testDecimalEmpty(): void
+    public function testDecimalNegative(): void
     {
         $this->validator->add('test', Rule::decimal());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '-123'
             ])
         );
     }
 
+    public function testDecimalZero(): void
+    {
+        $this->validator->add('test', Rule::decimal());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '0'
+            ])
+        );
+    }
 }

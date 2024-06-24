@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait RegexTestTrait
 {
-
     public function testRegex(): void
     {
         $this->validator->add('test', Rule::regex('/test/'));
@@ -16,6 +15,18 @@ trait RegexTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test'
+            ])
+        );
+    }
+
+    public function testRegexEmpty(): void
+    {
+        $this->validator->add('test', Rule::regex('/test/'));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,17 +54,4 @@ trait RegexTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testRegexEmpty(): void
-    {
-        $this->validator->add('test', Rule::regex('/test/'));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

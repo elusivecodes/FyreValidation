@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait BooleanTestTrait
 {
-
     public function testBoolean(): void
     {
         $this->validator->add('test', Rule::boolean());
@@ -20,14 +19,14 @@ trait BooleanTestTrait
         );
     }
 
-    public function testBooleanTrue(): void
+    public function testBooleanEmpty(): void
     {
         $this->validator->add('test', Rule::boolean());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'true'
+                'test' => ''
             ])
         );
     }
@@ -40,18 +39,6 @@ trait BooleanTestTrait
             [],
             $this->validator->validate([
                 'test' => 'false'
-            ])
-        );
-    }
-
-    public function testBooleanZero(): void
-    {
-        $this->validator->add('test', Rule::boolean());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '0'
             ])
         );
     }
@@ -80,16 +67,27 @@ trait BooleanTestTrait
         );
     }
 
-    public function testBooleanEmpty(): void
+    public function testBooleanTrue(): void
     {
         $this->validator->add('test', Rule::boolean());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => 'true'
             ])
         );
     }
 
+    public function testBooleanZero(): void
+    {
+        $this->validator->add('test', Rule::boolean());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '0'
+            ])
+        );
+    }
 }

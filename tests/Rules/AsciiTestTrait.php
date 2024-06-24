@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait AsciiTestTrait
 {
-
     public function testAscii(): void
     {
         $this->validator->add('test', Rule::ascii());
@@ -16,6 +15,18 @@ trait AsciiTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test123!'
+            ])
+        );
+    }
+
+    public function testAsciiEmpty(): void
+    {
+        $this->validator->add('test', Rule::ascii());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,17 +54,4 @@ trait AsciiTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testAsciiEmpty(): void
-    {
-        $this->validator->add('test', Rule::ascii());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

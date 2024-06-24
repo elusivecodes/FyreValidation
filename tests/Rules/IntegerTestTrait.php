@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait IntegerTestTrait
 {
-
     public function testInteger(): void
     {
         $this->validator->add('test', Rule::integer());
@@ -16,30 +15,6 @@ trait IntegerTestTrait
             [],
             $this->validator->validate([
                 'test' => '123'
-            ])
-        );
-    }
-
-    public function testIntegerZero(): void
-    {
-        $this->validator->add('test', Rule::integer());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '0'
-            ])
-        );
-    }
-
-    public function testIntegerNegative(): void
-    {
-        $this->validator->add('test', Rule::integer());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '-123'
             ])
         );
     }
@@ -58,6 +33,18 @@ trait IntegerTestTrait
         );
     }
 
+    public function testIntegerEmpty(): void
+    {
+        $this->validator->add('test', Rule::integer());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
+            ])
+        );
+    }
+
     public function testIntegerInvalid(): void
     {
         $this->validator->add('test', Rule::integer());
@@ -72,16 +59,27 @@ trait IntegerTestTrait
         );
     }
 
-    public function testIntegerEmpty(): void
+    public function testIntegerNegative(): void
     {
         $this->validator->add('test', Rule::integer());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '-123'
             ])
         );
     }
 
+    public function testIntegerZero(): void
+    {
+        $this->validator->add('test', Rule::integer());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '0'
+            ])
+        );
+    }
 }

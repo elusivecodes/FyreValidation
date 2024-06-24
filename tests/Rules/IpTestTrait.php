@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait IpTestTrait
 {
-
     public function testIp(): void
     {
         $this->validator->add('test', Rule::ip());
@@ -20,14 +19,14 @@ trait IpTestTrait
         );
     }
 
-    public function testIpWithV6(): void
+    public function testIpEmpty(): void
     {
         $this->validator->add('test', Rule::ip());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
+                'test' => ''
             ])
         );
     }
@@ -56,16 +55,15 @@ trait IpTestTrait
         );
     }
 
-    public function testIpEmpty(): void
+    public function testIpWithV6(): void
     {
         $this->validator->add('test', Rule::ip());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
             ])
         );
     }
-
 }

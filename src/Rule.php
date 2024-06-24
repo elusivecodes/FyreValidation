@@ -14,22 +14,15 @@ use function strtolower;
  */
 class Rule
 {
-
-    protected Closure $callback;
-
-    protected string|null $name = null;
+    use RulesTrait;
 
     protected array $arguments;
-
-    protected bool $skipEmpty = true;
-
-    protected bool $skipNotSet = true;
-
-    protected string|null $type = null;
-
+    protected Closure $callback;
     protected string|null $message = null;
-
-    use RulesTrait;
+    protected string|null $name = null;
+    protected bool $skipEmpty = true;
+    protected bool $skipNotSet = true;
+    protected string|null $type = null;
 
     /**
      * New Rule constructor.
@@ -55,7 +48,7 @@ class Rule
      * @param string $field The field name.
      * @return string|bool The error message, or TRUE if the validation was successful, otherwise FALSE.
      */
-    public function __invoke(mixed $value, array $data, string $field): string|bool
+    public function __invoke(mixed $value, array $data, string $field): bool|string
     {
         return $this->callback->__invoke($value, $data, $field);
     }
@@ -152,5 +145,4 @@ class Rule
     {
         return $this->skipNotSet;
     }
-
 }

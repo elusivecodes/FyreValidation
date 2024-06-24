@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait LessThanOrEqualsTestTrait
 {
-
     public function testLessThanOrEquals(): void
     {
         $this->validator->add('test', Rule::lessThanOrEquals(2));
@@ -16,18 +15,6 @@ trait LessThanOrEqualsTestTrait
             [],
             $this->validator->validate([
                 'test' => 1
-            ])
-        );
-    }
-
-    public function testLessThanOrEqualsEquals(): void
-    {
-        $this->validator->add('test', Rule::lessThanOrEquals(2));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => 2
             ])
         );
     }
@@ -46,16 +33,6 @@ trait LessThanOrEqualsTestTrait
         );
     }
 
-    public function testLessThanOrEqualsMissing(): void
-    {
-        $this->validator->add('test', Rule::lessThanOrEquals(2));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([])
-        );
-    }
-
     public function testLessThanOrEqualsEmpty(): void
     {
         $this->validator->add('test', Rule::lessThanOrEquals(2));
@@ -68,4 +45,25 @@ trait LessThanOrEqualsTestTrait
         );
     }
 
+    public function testLessThanOrEqualsEquals(): void
+    {
+        $this->validator->add('test', Rule::lessThanOrEquals(2));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => 2
+            ])
+        );
+    }
+
+    public function testLessThanOrEqualsMissing(): void
+    {
+        $this->validator->add('test', Rule::lessThanOrEquals(2));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([])
+        );
+    }
 }

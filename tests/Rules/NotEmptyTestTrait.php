@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait NotEmptyTestTrait
 {
-
     public function testNotEmpty(): void
     {
         $this->validator->add('test', Rule::notEmpty());
@@ -16,6 +15,20 @@ trait NotEmptyTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test'
+            ])
+        );
+    }
+
+    public function testNotEmptyEmpty(): void
+    {
+        $this->validator->add('test', Rule::notEmpty());
+
+        $this->assertSame(
+            [
+                'test' => ['invalid']
+            ],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -41,19 +54,4 @@ trait NotEmptyTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testNotEmptyEmpty(): void
-    {
-        $this->validator->add('test', Rule::notEmpty());
-
-        $this->assertSame(
-            [
-                'test' => ['invalid']
-            ],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

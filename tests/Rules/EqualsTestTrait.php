@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait EqualsTestTrait
 {
-
     public function testEquals(): void
     {
         $this->validator->add('test', Rule::equals('test'));
@@ -20,14 +19,16 @@ trait EqualsTestTrait
         );
     }
 
-    public function testEqualsEquals(): void
+    public function testEqualsAbove(): void
     {
         $this->validator->add('test', Rule::equals('2'));
 
         $this->assertSame(
-            [],
+            [
+                'test' => ['invalid']
+            ],
             $this->validator->validate([
-                'test' => '2'
+                'test' => '3'
             ])
         );
     }
@@ -46,16 +47,26 @@ trait EqualsTestTrait
         );
     }
 
-    public function testEqualsAbove(): void
+    public function testEqualsEmpty(): void
     {
         $this->validator->add('test', Rule::equals('2'));
 
         $this->assertSame(
-            [
-                'test' => ['invalid']
-            ],
+            [],
             $this->validator->validate([
-                'test' => '3'
+                'test' => ''
+            ])
+        );
+    }
+
+    public function testEqualsEquals(): void
+    {
+        $this->validator->add('test', Rule::equals('2'));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '2'
             ])
         );
     }
@@ -83,17 +94,4 @@ trait EqualsTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testEqualsEmpty(): void
-    {
-        $this->validator->add('test', Rule::equals('2'));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

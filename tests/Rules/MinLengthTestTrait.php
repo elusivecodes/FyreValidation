@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait MinLengthTestTrait
 {
-
     public function testMinLength(): void
     {
         $this->validator->add('test', Rule::minLength(3));
@@ -16,6 +15,18 @@ trait MinLengthTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test'
+            ])
+        );
+    }
+
+    public function testMinLengthEmpty(): void
+    {
+        $this->validator->add('test', Rule::minLength(3));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -55,17 +66,4 @@ trait MinLengthTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testMinLengthEmpty(): void
-    {
-        $this->validator->add('test', Rule::minLength(3));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

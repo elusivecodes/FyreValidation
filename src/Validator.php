@@ -13,7 +13,6 @@ use function array_unique;
  */
 class Validator
 {
-
     protected array $fields = [];
 
     /**
@@ -92,7 +91,7 @@ class Validator
         $hasRule = false;
         $newRules = [];
 
-        foreach ($this->fields[$field] AS $rule) {
+        foreach ($this->fields[$field] as $rule) {
             if ($rule->getName() === $name) {
                 $hasRule |= true;
                 continue;
@@ -124,14 +123,14 @@ class Validator
     {
         $errors = [];
 
-        foreach ($this->fields AS $field => $rules) {
+        foreach ($this->fields as $field => $rules) {
             $value = $data[$field] ?? null;
 
             $hasField = array_key_exists($field, $data);
             $hasValue = $value !== null && $value !== '' && $value !== [];
 
             $fieldErrors = [];
-            foreach ($rules AS $rule) {
+            foreach ($rules as $rule) {
                 if (!$rule->checkType($type)) {
                     continue;
                 }
@@ -160,5 +159,4 @@ class Validator
 
         return $errors;
     }
-
 }

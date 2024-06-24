@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait ExactLengthTestTrait
 {
-
     public function testExactLength(): void
     {
         $this->validator->add('test', Rule::exactLength(3));
@@ -16,6 +15,18 @@ trait ExactLengthTestTrait
             [],
             $this->validator->validate([
                 'test' => '123'
+            ])
+        );
+    }
+
+    public function testExactLengthEmpty(): void
+    {
+        $this->validator->add('test', Rule::exactLength(3));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,17 +54,4 @@ trait ExactLengthTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testExactLengthEmpty(): void
-    {
-        $this->validator->add('test', Rule::exactLength(3));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

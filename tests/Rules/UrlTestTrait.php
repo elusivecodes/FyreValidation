@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait UrlTestTrait
 {
-
     public function testUrl(): void
     {
         $this->validator->add('test', Rule::url());
@@ -16,6 +15,18 @@ trait UrlTestTrait
             [],
             $this->validator->validate([
                 'test' => 'https://test.com/'
+            ])
+        );
+    }
+
+    public function testUrlEmpty(): void
+    {
+        $this->validator->add('test', Rule::url());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,17 +54,4 @@ trait UrlTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testUrlEmpty(): void
-    {
-        $this->validator->add('test', Rule::url());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

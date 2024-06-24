@@ -10,20 +10,114 @@ use PHPUnit\Framework\TestCase;
 
 final class ValidatorTest extends TestCase
 {
-
     protected Validator $validator;
 
-    public function testMultipleFields(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->validator->add('test1', Rule::required());
-        $this->validator->add('test2', Rule::required());
+        Lang::clear();
+    }
+
+    protected function setUp(): void
+    {
+        $this->validator = new Validator();
+    }
+
+    public function testCallback(): void
+    {
+        $this->validator->add('test', function($value) {
+            return $value === 'test';
+        });
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => 'test'
+            ])
+        );
+    }
+
+    public function testCallbackData(): void
+    {
+        $this->validator->add('test', function($value, array $data) {
+            return $data['test'] === 'test';
+        });
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => 'test'
+            ])
+        );
+    }
+
+    public function testCallbackErrorMessage(): void
+    {
+        $this->validator->add('test', function($value) {
+            return 'error';
+        });
 
         $this->assertSame(
             [
-                'test1' => ['invalid'],
-                'test2' => ['invalid']
+                'test' => ['error']
             ],
-            $this->validator->validate([])
+            $this->validator->validate([
+                'test' => 'invalid'
+            ])
+        );
+    }
+
+    public function testCallbackInvalid(): void
+    {
+        $this->validator->add('test', function($value) {
+            return $value === 'test';
+        });
+
+        $this->assertSame(
+            [
+                'test' => ['invalid']
+            ],
+            $this->validator->validate([
+                'test' => 'invalid'
+            ])
+        );
+    }
+
+    public function testErrorMessage(): void
+    {
+        $this->validator->add('test', function($value) {
+            return false;
+        }, ['message' => 'error']);
+
+        $this->assertSame(
+            [
+                'test' => ['error']
+            ],
+            $this->validator->validate([
+                'test' => 'test'
+            ])
+        );
+    }
+
+    public function testGetFieldRules(): void
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
+
+        $rules = $this->validator->getFieldRules('test');
+
+        $this->assertCount(
+            2,
+            $rules
+        );
+
+        $this->assertInstanceOf(
+            Rule::class,
+            $rules[0]
+        );
+
+        $this->assertInstanceOf(
+            Rule::class,
+            $rules[1]
         );
     }
 
@@ -60,79 +154,17 @@ final class ValidatorTest extends TestCase
         );
     }
 
-    public function testCallback(): void
+    public function testMultipleFields(): void
     {
-        $this->validator->add('test', function($value) {
-            return $value === 'test';
-        });
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => 'test'
-            ])
-        );
-    }
-
-    public function testCallbackData(): void
-    {
-        $this->validator->add('test', function($value, array $data) {
-            return $data['test'] === 'test';
-        });
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => 'test'
-            ])
-        );
-    }
-
-    public function testCallbackInvalid(): void
-    {
-        $this->validator->add('test', function($value) {
-            return $value === 'test';
-        });
+        $this->validator->add('test1', Rule::required());
+        $this->validator->add('test2', Rule::required());
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test1' => ['invalid'],
+                'test2' => ['invalid']
             ],
-            $this->validator->validate([
-                'test' => 'invalid'
-            ])
-        );
-    }
-
-    public function testCallbackErrorMessage(): void
-    {
-        $this->validator->add('test', function($value) {
-            return 'error';
-        });
-
-        $this->assertSame(
-            [
-                'test' => ['error']
-            ],
-            $this->validator->validate([
-                'test' => 'invalid'
-            ])
-        );
-    }
-
-    public function testErrorMessage(): void
-    {
-        $this->validator->add('test', function($value) {
-            return false;
-        }, ['message' => 'error']);
-
-        $this->assertSame(
-            [
-                'test' => ['error']
-            ],
-            $this->validator->validate([
-                'test' => 'test'
-            ])
+            $this->validator->validate([])
         );
     }
 
@@ -166,6 +198,53 @@ final class ValidatorTest extends TestCase
         );
     }
 
+    public function testRemove(): void
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
+
+        $this->assertTrue(
+            $this->validator->remove('test')
+        );
+
+        $this->assertEmpty(
+            $this->validator->getFieldRules('test')
+        );
+    }
+
+    public function testRemoveInvalid(): void
+    {
+        $this->assertFalse(
+            $this->validator->remove('test', 'greaterThan')
+        );
+    }
+
+    public function testRemoveRule(): void
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
+
+        $this->assertTrue(
+            $this->validator->remove('test', 'greaterThan')
+        );
+
+        $rules = $this->validator->getFieldRules('test');
+
+        $this->assertCount(
+            1,
+            $rules
+        );
+    }
+
+    public function testRemoveRuleInvalid(): void
+    {
+        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
+
+        $this->assertFalse(
+            $this->validator->remove('test', 'greaterThan')
+        );
+    }
+
     public function testSkipEmpty(): void
     {
         $this->validator->add('test', function($value) {
@@ -195,85 +274,4 @@ final class ValidatorTest extends TestCase
             $this->validator->validate([])
         );
     }
-
-    public function testGetFieldRules(): void
-    {
-        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
-        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
-
-        $rules = $this->validator->getFieldRules('test');
-
-        $this->assertCount(
-            2,
-            $rules
-        );
-
-        $this->assertInstanceOf(
-            Rule::class,
-            $rules[0]
-        );
-
-        $this->assertInstanceOf(
-            Rule::class,
-            $rules[1]
-        );
-    }
-
-    public function testRemove(): void
-    {
-        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
-        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
-
-        $this->assertTrue(
-            $this->validator->remove('test')
-        );
-
-        $this->assertEmpty(
-            $this->validator->getFieldRules('test')
-        );
-    }
-
-    public function testRemoveRule(): void
-    {
-        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
-        $this->validator->add('test', Rule::greaterThan(1), ['message' => 'greater than 1']);
-
-        $this->assertTrue(
-            $this->validator->remove('test', 'greaterThan')
-        );
-
-        $rules = $this->validator->getFieldRules('test');
-
-        $this->assertCount(
-            1,
-            $rules
-        );
-    }
-
-    public function testRemoveInvalid(): void
-    {
-        $this->assertFalse(
-            $this->validator->remove('test', 'greaterThan')
-        );
-    }
-
-    public function testRemoveRuleInvalid(): void
-    {
-        $this->validator->add('test', Rule::naturalNumber(), ['message' => 'natural number']);
-
-        $this->assertFalse(
-            $this->validator->remove('test', 'greaterThan')
-        );
-    }
-
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-    }
-
-    protected function setUp(): void
-    {
-        $this->validator = new Validator;
-    }
-
 }

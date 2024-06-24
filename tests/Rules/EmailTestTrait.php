@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait EmailTestTrait
 {
-
     public function testEmail(): void
     {
         $this->validator->add('test', Rule::email());
@@ -16,6 +15,18 @@ trait EmailTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test@test.com'
+            ])
+        );
+    }
+
+    public function testEmailEmpty(): void
+    {
+        $this->validator->add('test', Rule::email());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,17 +54,4 @@ trait EmailTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testEmailEmpty(): void
-    {
-        $this->validator->add('test', Rule::email());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

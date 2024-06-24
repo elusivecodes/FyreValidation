@@ -10,8 +10,18 @@ use PHPUnit\Framework\TestCase;
 
 final class LangTest extends TestCase
 {
-
     protected Validator $validator;
+
+    public static function setUpBeforeClass(): void
+    {
+        Lang::clear();
+        Lang::addPath('lang');
+    }
+
+    protected function setUp(): void
+    {
+        $this->validator = new Validator();
+    }
 
     public function testAlphaError(): void
     {
@@ -422,16 +432,4 @@ final class LangTest extends TestCase
             ])
         );
     }
-
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-        Lang::addPath('lang');
-    }
-
-    protected function setUp(): void
-    {
-        $this->validator = new Validator;
-    }
-
 }

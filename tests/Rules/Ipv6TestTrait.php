@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait Ipv6TestTrait
 {
-
     public function testIpv6(): void
     {
         $this->validator->add('test', Rule::ipv6());
@@ -20,16 +19,14 @@ trait Ipv6TestTrait
         );
     }
 
-    public function testIpv6WithV4(): void
+    public function testIpv6Empty(): void
     {
         $this->validator->add('test', Rule::ipv6());
 
         $this->assertSame(
-            [
-                'test' => ['invalid']
-            ],
+            [],
             $this->validator->validate([
-                'test' => '1.1.1.1'
+                'test' => ''
             ])
         );
     }
@@ -58,16 +55,17 @@ trait Ipv6TestTrait
         );
     }
 
-    public function testIpv6Empty(): void
+    public function testIpv6WithV4(): void
     {
         $this->validator->add('test', Rule::ipv6());
 
         $this->assertSame(
-            [],
+            [
+                'test' => ['invalid']
+            ],
             $this->validator->validate([
-                'test' => ''
+                'test' => '1.1.1.1'
             ])
         );
     }
-
 }

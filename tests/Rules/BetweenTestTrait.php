@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait BetweenTestTrait
 {
-
     public function testBetween(): void
     {
         $this->validator->add('test', Rule::between(5, 10));
@@ -16,44 +15,6 @@ trait BetweenTestTrait
             [],
             $this->validator->validate([
                 'test' => '7'
-            ])
-        );
-    }
-
-    public function testBetweenLower(): void
-    {
-        $this->validator->add('test', Rule::between(5, 10));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '5'
-            ])
-        );
-    }
-
-    public function testBetweenUpper(): void
-    {
-        $this->validator->add('test', Rule::between(5, 10));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => '10'
-            ])
-        );
-    }
-
-    public function testBetweenBelow(): void
-    {
-        $this->validator->add('test', Rule::between(5, 10));
-
-        $this->assertSame(
-            [
-                'test' => ['invalid']
-            ],
-            $this->validator->validate([
-                'test' => '1'
             ])
         );
     }
@@ -72,13 +33,17 @@ trait BetweenTestTrait
         );
     }
 
-    public function testBetweenMissing(): void
+    public function testBetweenBelow(): void
     {
         $this->validator->add('test', Rule::between(5, 10));
 
         $this->assertSame(
-            [],
-            $this->validator->validate([])
+            [
+                'test' => ['invalid']
+            ],
+            $this->validator->validate([
+                'test' => '1'
+            ])
         );
     }
 
@@ -94,4 +59,37 @@ trait BetweenTestTrait
         );
     }
 
+    public function testBetweenLower(): void
+    {
+        $this->validator->add('test', Rule::between(5, 10));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '5'
+            ])
+        );
+    }
+
+    public function testBetweenMissing(): void
+    {
+        $this->validator->add('test', Rule::between(5, 10));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([])
+        );
+    }
+
+    public function testBetweenUpper(): void
+    {
+        $this->validator->add('test', Rule::between(5, 10));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => '10'
+            ])
+        );
+    }
 }

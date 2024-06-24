@@ -8,7 +8,6 @@ use Fyre\Validation\Rule;
 
 trait TimeTestTrait
 {
-
     public function testTime(): void
     {
         $this->validator->add('test', Rule::time());
@@ -21,14 +20,14 @@ trait TimeTestTrait
         );
     }
 
-    public function testTimeString(): void
+    public function testTimeEmpty(): void
     {
         $this->validator->add('test', Rule::time());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '00:00:00'
+                'test' => ''
             ])
         );
     }
@@ -57,16 +56,15 @@ trait TimeTestTrait
         );
     }
 
-    public function testTimeEmpty(): void
+    public function testTimeString(): void
     {
         $this->validator->add('test', Rule::time());
 
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '00:00:00'
             ])
         );
     }
-
 }

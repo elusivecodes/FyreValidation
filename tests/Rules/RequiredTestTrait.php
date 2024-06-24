@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait RequiredTestTrait
 {
-
     public function testRequired(): void
     {
         $this->validator->add('test', Rule::required());
@@ -16,6 +15,20 @@ trait RequiredTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test'
+            ])
+        );
+    }
+
+    public function testRequiredEmpty(): void
+    {
+        $this->validator->add('test', Rule::required());
+
+        $this->assertSame(
+            [
+                'test' => ['invalid']
+            ],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,19 +56,4 @@ trait RequiredTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testRequiredEmpty(): void
-    {
-        $this->validator->add('test', Rule::required());
-
-        $this->assertSame(
-            [
-                'test' => ['invalid']
-            ],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

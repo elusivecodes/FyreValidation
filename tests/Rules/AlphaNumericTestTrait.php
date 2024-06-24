@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait AlphaNumericTestTrait
 {
-
     public function testAlphaNumeric(): void
     {
         $this->validator->add('test', Rule::alphaNumeric());
@@ -16,6 +15,18 @@ trait AlphaNumericTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test123'
+            ])
+        );
+    }
+
+    public function testAlphaNumericEmpty(): void
+    {
+        $this->validator->add('test', Rule::alphaNumeric());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,17 +54,4 @@ trait AlphaNumericTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testAlphaNumericEmpty(): void
-    {
-        $this->validator->add('test', Rule::alphaNumeric());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

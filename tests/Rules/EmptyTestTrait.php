@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait EmptyTestTrait
 {
-
     public function testEmpty(): void
     {
         $this->validator->add('test', Rule::empty());
@@ -18,6 +17,18 @@ trait EmptyTestTrait
             ],
             $this->validator->validate([
                 'test' => 'test'
+            ])
+        );
+    }
+
+    public function testEmptyEmpty(): void
+    {
+        $this->validator->add('test', Rule::empty());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -45,17 +56,4 @@ trait EmptyTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testEmptyEmpty(): void
-    {
-        $this->validator->add('test', Rule::empty());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

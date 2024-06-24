@@ -10,11 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 final class RulesTest extends TestCase
 {
-
-    protected Validator $validator;
+    use AlphaNumericTestTrait;
 
     use AlphaTestTrait;
-    use AlphaNumericTestTrait;
     use AsciiTestTrait;
     use BetweenTestTrait;
     use BooleanTestTrait;
@@ -28,8 +26,8 @@ final class RulesTest extends TestCase
     use ExactLengthTestTrait;
     use GreaterThanOrEqualsTestTrait;
     use GreaterThanTestTrait;
-    use InTestTrait;
     use IntegerTestTrait;
+    use InTestTrait;
     use IpTestTrait;
     use Ipv4TestTrait;
     use Ipv6TestTrait;
@@ -46,6 +44,18 @@ final class RulesTest extends TestCase
     use TimeTestTrait;
     use UrlTestTrait;
 
+    protected Validator $validator;
+
+    public static function setUpBeforeClass(): void
+    {
+        Lang::clear();
+    }
+
+    protected function setUp(): void
+    {
+        $this->validator = new Validator();
+    }
+
     public function testGetArguments(): void
     {
         $rule = Rule::between(5, 10);
@@ -55,7 +65,7 @@ final class RulesTest extends TestCase
             $rule->getArguments()
         );
     }
-    
+
     public function testGetName(): void
     {
         $rule = Rule::alpha();
@@ -65,15 +75,4 @@ final class RulesTest extends TestCase
             $rule->getName()
         );
     }
-
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-    }
-    
-    protected function setUp(): void
-    {
-        $this->validator = new Validator;
-    }
-
 }

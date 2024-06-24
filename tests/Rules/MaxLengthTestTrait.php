@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait MaxLengthTestTrait
 {
-
     public function testMaxLength(): void
     {
         $this->validator->add('test', Rule::maxLength(3));
@@ -16,6 +15,18 @@ trait MaxLengthTestTrait
             [],
             $this->validator->validate([
                 'test' => 'a'
+            ])
+        );
+    }
+
+    public function testMaxLengthEmpty(): void
+    {
+        $this->validator->add('test', Rule::maxLength(3));
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -55,17 +66,4 @@ trait MaxLengthTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testMaxLengthEmpty(): void
-    {
-        $this->validator->add('test', Rule::maxLength(3));
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }

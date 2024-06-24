@@ -7,7 +7,6 @@ use Fyre\Validation\Rule;
 
 trait RequirePresenceTestTrait
 {
-
     public function testRequirePresence(): void
     {
         $this->validator->add('test', Rule::requirePresence());
@@ -16,6 +15,18 @@ trait RequirePresenceTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test'
+            ])
+        );
+    }
+
+    public function testRequirePresenceEmpty(): void
+    {
+        $this->validator->add('test', Rule::requirePresence());
+
+        $this->assertSame(
+            [],
+            $this->validator->validate([
+                'test' => ''
             ])
         );
     }
@@ -43,17 +54,4 @@ trait RequirePresenceTestTrait
             $this->validator->validate([])
         );
     }
-
-    public function testRequirePresenceEmpty(): void
-    {
-        $this->validator->add('test', Rule::requirePresence());
-
-        $this->assertSame(
-            [],
-            $this->validator->validate([
-                'test' => ''
-            ])
-        );
-    }
-
 }
