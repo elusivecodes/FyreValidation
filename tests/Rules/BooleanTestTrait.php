@@ -14,7 +14,7 @@ trait BooleanTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '1'
+                'test' => '1',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait BooleanTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -38,7 +38,7 @@ trait BooleanTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'false'
+                'test' => 'false',
             ])
         );
     }
@@ -49,10 +49,10 @@ trait BooleanTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }
@@ -74,7 +74,7 @@ trait BooleanTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'true'
+                'test' => 'true',
             ])
         );
     }
@@ -86,7 +86,7 @@ trait BooleanTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '0'
+                'test' => '0',
             ])
         );
     }

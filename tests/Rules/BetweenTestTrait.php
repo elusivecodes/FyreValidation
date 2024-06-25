@@ -14,7 +14,7 @@ trait BetweenTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '7'
+                'test' => '7',
             ])
         );
     }
@@ -25,10 +25,10 @@ trait BetweenTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => '12'
+                'test' => '12',
             ])
         );
     }
@@ -39,10 +39,10 @@ trait BetweenTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => '1'
+                'test' => '1',
             ])
         );
     }
@@ -54,7 +54,7 @@ trait BetweenTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -66,7 +66,7 @@ trait BetweenTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '5'
+                'test' => '5',
             ])
         );
     }
@@ -88,7 +88,7 @@ trait BetweenTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '10'
+                'test' => '10',
             ])
         );
     }

@@ -14,7 +14,7 @@ trait Ipv4TestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '1.1.1.1'
+                'test' => '1.1.1.1',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait Ipv4TestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -37,10 +37,10 @@ trait Ipv4TestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }
@@ -61,10 +61,10 @@ trait Ipv4TestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
+                'test' => '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
             ])
         );
     }

@@ -34,6 +34,7 @@ trait RulesTrait
 {
     /**
      * Create an "alpha" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function alpha(): static
@@ -46,6 +47,7 @@ trait RulesTrait
 
     /**
      * Create an "alpha-numeric" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function alphaNumeric(): static
@@ -58,6 +60,7 @@ trait RulesTrait
 
     /**
      * Create an "ASCII" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function ascii(): static
@@ -70,6 +73,7 @@ trait RulesTrait
 
     /**
      * Create a "between" Rule.
+     *
      * @param int $min The minimum value.
      * @param int $max The maximum value.
      * @return Rule The Rule.
@@ -85,6 +89,7 @@ trait RulesTrait
 
     /**
      * Create a "boolean" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function boolean(): static
@@ -97,6 +102,7 @@ trait RulesTrait
 
     /**
      * Create a "date" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function date(): static
@@ -109,6 +115,7 @@ trait RulesTrait
 
     /**
      * Create a "date/time" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function dateTime(): static
@@ -121,6 +128,7 @@ trait RulesTrait
 
     /**
      * Create a "decimal" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function decimal(): static
@@ -133,6 +141,7 @@ trait RulesTrait
 
     /**
      * Create a "differs" Rule.
+     *
      * @param string $field The other field name.
      * @return Rule The Rule.
      */
@@ -147,6 +156,7 @@ trait RulesTrait
 
     /**
      * Create an "email" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function email(): static
@@ -159,6 +169,7 @@ trait RulesTrait
 
     /**
      * Create an "empty" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function empty(): static
@@ -171,6 +182,7 @@ trait RulesTrait
 
     /**
      * Create an "equals" Rule.
+     *
      * @param mixed $other The value to compare against.
      * @return Rule The Rule.
      */
@@ -185,6 +197,7 @@ trait RulesTrait
 
     /**
      * Create an "exact length" Rule.
+     *
      * @param int $length The length.
      * @return Rule The Rule.
      */
@@ -199,6 +212,7 @@ trait RulesTrait
 
     /**
      * Create a "greater than" Rule.
+     *
      * @param int $min The minimum value.
      * @return Rule The Rule.
      */
@@ -213,6 +227,7 @@ trait RulesTrait
 
     /**
      * Create a "greater than or equals" Rule.
+     *
      * @param int $min The minimum value.
      * @return Rule The Rule.
      */
@@ -227,6 +242,7 @@ trait RulesTrait
 
     /**
      * Create an "in" Rule.
+     *
      * @param array $values The values.
      * @return Rule The Rule.
      */
@@ -241,6 +257,7 @@ trait RulesTrait
 
     /**
      * Create an "integer" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function integer(): static
@@ -253,6 +270,7 @@ trait RulesTrait
 
     /**
      * Create an "IP" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function ip(): static
@@ -265,6 +283,7 @@ trait RulesTrait
 
     /**
      * Create an "IPv4" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function ipv4(): static
@@ -277,6 +296,7 @@ trait RulesTrait
 
     /**
      * Create an "IPv6" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function ipv6(): static
@@ -289,6 +309,7 @@ trait RulesTrait
 
     /**
      * Create a "less than" Rule.
+     *
      * @param int $max The maximum value.
      * @return Rule The Rule.
      */
@@ -303,6 +324,7 @@ trait RulesTrait
 
     /**
      * Create a "less than or equals" Rule.
+     *
      * @param int $max The maximum value.
      * @return Rule The Rule.
      */
@@ -317,6 +339,7 @@ trait RulesTrait
 
     /**
      * Create a "matches" Rule.
+     *
      * @param string $field The other field name.
      * @return Rule The Rule.
      */
@@ -331,6 +354,7 @@ trait RulesTrait
 
     /**
      * Create a "maximum length" Rule.
+     *
      * @param int $length The length.
      * @return Rule The Rule.
      */
@@ -345,6 +369,7 @@ trait RulesTrait
 
     /**
      * Create a "minimum length" Rule.
+     *
      * @param int $length The length.
      * @return Rule The Rule.
      */
@@ -359,6 +384,7 @@ trait RulesTrait
 
     /**
      * Create a "natural number" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function naturalNumber(): static
@@ -371,6 +397,7 @@ trait RulesTrait
 
     /**
      * Create a "not empty" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function notEmpty(): static
@@ -384,6 +411,7 @@ trait RulesTrait
 
     /**
      * Create a "regular expression" Rule.
+     *
      * @param string $regex The regular expression.
      * @return Rule The Rule.
      */
@@ -398,6 +426,7 @@ trait RulesTrait
 
     /**
      * Create a "required" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function required(): static
@@ -415,6 +444,7 @@ trait RulesTrait
 
     /**
      * Create a "require presence" Rule.
+     *
      * @param bool $mustBeSet Whether the key must be set.
      * @return Rule The Rule.
      */
@@ -430,6 +460,7 @@ trait RulesTrait
 
     /**
      * Create a "time" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function time(): static
@@ -442,6 +473,7 @@ trait RulesTrait
 
     /**
      * Create a "URL" Rule.
+     *
      * @return Rule The Rule.
      */
     public static function url(): static

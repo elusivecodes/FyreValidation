@@ -17,15 +17,22 @@ class Rule
     use RulesTrait;
 
     protected array $arguments;
+
     protected Closure $callback;
+
     protected string|null $message = null;
+
     protected string|null $name = null;
+
     protected bool $skipEmpty = true;
+
     protected bool $skipNotSet = true;
+
     protected string|null $type = null;
 
     /**
      * New Rule constructor.
+     *
      * @param Closure $callback The callback.
      * @param string|null $name The rule name.
      * @param array $arguments The callback arguments.
@@ -43,6 +50,7 @@ class Rule
 
     /**
      * Invoke the rule.
+     *
      * @param mixed $value The value to test.
      * @param array $data The validation data.
      * @param string $field The field name.
@@ -55,6 +63,7 @@ class Rule
 
     /**
      * Check the type of rule.
+     *
      * @param string $type The type to test.
      * @return bool TRUE if the types match, otherwise FALSE.
      */
@@ -65,6 +74,7 @@ class Rule
 
     /**
      * Get the callback arguments.
+     *
      * @return array The callback arguments.
      */
     public function getArguments(): array
@@ -74,6 +84,7 @@ class Rule
 
     /**
      * Get the rule error message.
+     *
      * @param string $field The field name.
      * @return string The error message.
      */
@@ -97,6 +108,7 @@ class Rule
 
     /**
      * Get the rule name.
+     *
      * @return string|null The rule name.
      */
     public function getName(): string|null
@@ -106,6 +118,7 @@ class Rule
 
     /**
      * Set the rule error message.
+     *
      * @param string $error The error message.
      * @return Rule The Rule.
      */
@@ -118,6 +131,7 @@ class Rule
 
     /**
      * Set the rule type.
+     *
      * @param string $type The rule type.
      * @return Rule The Rule.
      */
@@ -130,6 +144,7 @@ class Rule
 
     /**
      * Determine whether to skip empty values.
+     *
      * @return bool TRUE if empty values can be skipped, otherwise FALSE.
      */
     public function skipEmpty(): bool
@@ -139,6 +154,7 @@ class Rule
 
     /**
      * Determine whether to skip unset values.
+     *
      * @return bool TRUE if unset values can be skipped, otherwise FALSE.
      */
     public function skipNotSet(): bool

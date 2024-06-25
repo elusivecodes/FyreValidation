@@ -15,7 +15,7 @@ trait DateTimeTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => DateTime::now()
+                'test' => DateTime::now(),
             ])
         );
     }
@@ -27,7 +27,7 @@ trait DateTimeTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -38,10 +38,10 @@ trait DateTimeTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }
@@ -63,7 +63,7 @@ trait DateTimeTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '2022-01-01 00:00:00'
+                'test' => '2022-01-01 00:00:00',
             ])
         );
     }

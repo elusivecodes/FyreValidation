@@ -14,7 +14,7 @@ trait LessThanTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 1
+                'test' => 1,
             ])
         );
     }
@@ -25,10 +25,10 @@ trait LessThanTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 3
+                'test' => 3,
             ])
         );
     }
@@ -40,7 +40,7 @@ trait LessThanTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -51,10 +51,10 @@ trait LessThanTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 2
+                'test' => 2,
             ])
         );
     }

@@ -14,7 +14,7 @@ trait MaxLengthTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'a'
+                'test' => 'a',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait MaxLengthTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -38,7 +38,7 @@ trait MaxLengthTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '123'
+                'test' => '123',
             ])
         );
     }
@@ -49,10 +49,10 @@ trait MaxLengthTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }

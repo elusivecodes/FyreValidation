@@ -14,7 +14,7 @@ trait UrlTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'https://test.com/'
+                'test' => 'https://test.com/',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait UrlTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -37,10 +37,10 @@ trait UrlTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }

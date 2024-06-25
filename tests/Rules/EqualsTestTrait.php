@@ -14,7 +14,7 @@ trait EqualsTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }
@@ -25,10 +25,10 @@ trait EqualsTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => '3'
+                'test' => '3',
             ])
         );
     }
@@ -39,10 +39,10 @@ trait EqualsTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => '1'
+                'test' => '1',
             ])
         );
     }
@@ -54,7 +54,7 @@ trait EqualsTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -66,7 +66,7 @@ trait EqualsTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '2'
+                'test' => '2',
             ])
         );
     }
@@ -77,10 +77,10 @@ trait EqualsTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }

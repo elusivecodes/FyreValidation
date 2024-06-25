@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 final class RulesTest extends TestCase
 {
     use AlphaNumericTestTrait;
-
     use AlphaTestTrait;
     use AsciiTestTrait;
     use BetweenTestTrait;
@@ -46,16 +45,6 @@ final class RulesTest extends TestCase
 
     protected Validator $validator;
 
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-    }
-
-    protected function setUp(): void
-    {
-        $this->validator = new Validator();
-    }
-
     public function testGetArguments(): void
     {
         $rule = Rule::between(5, 10);
@@ -74,5 +63,15 @@ final class RulesTest extends TestCase
             'alpha',
             $rule->getName()
         );
+    }
+
+    public static function setUpBeforeClass(): void
+    {
+        Lang::clear();
+    }
+
+    protected function setUp(): void
+    {
+        $this->validator = new Validator();
     }
 }

@@ -14,7 +14,7 @@ trait ExactLengthTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '123'
+                'test' => '123',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait ExactLengthTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -37,10 +37,10 @@ trait ExactLengthTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }

@@ -14,7 +14,7 @@ trait RegexTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait RegexTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -37,10 +37,10 @@ trait RegexTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }

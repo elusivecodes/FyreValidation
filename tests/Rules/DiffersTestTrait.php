@@ -15,7 +15,7 @@ trait DiffersTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test',
-                'other' => 'different'
+                'other' => 'different',
             ])
         );
     }
@@ -28,7 +28,7 @@ trait DiffersTestTrait
             [],
             $this->validator->validate([
                 'test' => '',
-                'other' => ''
+                'other' => '',
             ])
         );
     }
@@ -41,7 +41,7 @@ trait DiffersTestTrait
             [],
             $this->validator->validate([
                 'test' => '',
-                'other' => 'test'
+                'other' => 'test',
             ])
         );
     }
@@ -64,7 +64,7 @@ trait DiffersTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test',
-                'other' => ''
+                'other' => '',
             ])
         );
     }
@@ -75,11 +75,11 @@ trait DiffersTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
                 'test' => 'test',
-                'other' => 'test'
+                'other' => 'test',
             ])
         );
     }

@@ -14,7 +14,7 @@ trait AlphaNumericTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test123'
+                'test' => 'test123',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait AlphaNumericTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -37,10 +37,10 @@ trait AlphaNumericTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid123!'
+                'test' => 'invalid123!',
             ])
         );
     }

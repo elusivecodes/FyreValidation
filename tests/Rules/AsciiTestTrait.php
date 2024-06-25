@@ -14,7 +14,7 @@ trait AsciiTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test123!'
+                'test' => 'test123!',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait AsciiTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -37,10 +37,10 @@ trait AsciiTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid♫'
+                'test' => 'invalid♫',
             ])
         );
     }

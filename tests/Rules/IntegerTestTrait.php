@@ -14,7 +14,7 @@ trait IntegerTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '123'
+                'test' => '123',
             ])
         );
     }
@@ -25,10 +25,10 @@ trait IntegerTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => '123.456'
+                'test' => '123.456',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait IntegerTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -51,10 +51,10 @@ trait IntegerTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }
@@ -66,7 +66,7 @@ trait IntegerTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '-123'
+                'test' => '-123',
             ])
         );
     }
@@ -78,7 +78,7 @@ trait IntegerTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '0'
+                'test' => '0',
             ])
         );
     }

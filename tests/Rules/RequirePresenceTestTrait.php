@@ -14,7 +14,7 @@ trait RequirePresenceTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait RequirePresenceTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -38,7 +38,7 @@ trait RequirePresenceTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '0'
+                'test' => '0',
             ])
         );
     }
@@ -49,7 +49,7 @@ trait RequirePresenceTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([])
         );

@@ -17,6 +17,7 @@ class Validator
 
     /**
      * Add a validation rule.
+     *
      * @param string $field The field name.
      * @param Closure|Rule $rule The Rule.
      * @param array $options Options for the rule.
@@ -53,6 +54,7 @@ class Validator
 
     /**
      * Clear all rules from the Validator.
+     *
      * @return Validator The Validator.
      */
     public function clear(): void
@@ -62,6 +64,7 @@ class Validator
 
     /**
      * Get the rules for a field.
+     *
      * @param string $field The field name.
      * @return array The rules.
      */
@@ -72,6 +75,7 @@ class Validator
 
     /**
      * Remove a validation rule.
+     *
      * @param string $field The field name.
      * @param string|null $name The rule name.
      * @return bool TRUE if the rule was removed, otherwise FALSE.
@@ -94,6 +98,7 @@ class Validator
         foreach ($this->fields[$field] as $rule) {
             if ($rule->getName() === $name) {
                 $hasRule |= true;
+
                 continue;
             }
 
@@ -115,6 +120,7 @@ class Validator
 
     /**
      * Perform validation and return any errors.
+     *
      * @param array $data The data to validate.
      * @param string|null $type The type of validation to perform.
      * @return array The validation errors.

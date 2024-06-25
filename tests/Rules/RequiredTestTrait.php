@@ -14,7 +14,7 @@ trait RequiredTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }
@@ -25,10 +25,10 @@ trait RequiredTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -40,7 +40,7 @@ trait RequiredTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => '0'
+                'test' => '0',
             ])
         );
     }
@@ -51,7 +51,7 @@ trait RequiredTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([])
         );

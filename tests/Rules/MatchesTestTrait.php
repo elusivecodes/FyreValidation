@@ -15,7 +15,7 @@ trait MatchesTestTrait
             [],
             $this->validator->validate([
                 'test' => 'test',
-                'other' => 'test'
+                'other' => 'test',
             ])
         );
     }
@@ -28,7 +28,7 @@ trait MatchesTestTrait
             [],
             $this->validator->validate([
                 'test' => '',
-                'other' => ''
+                'other' => '',
             ])
         );
     }
@@ -39,11 +39,11 @@ trait MatchesTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
                 'test' => 'test',
-                'other' => 'different'
+                'other' => 'different',
             ])
         );
     }
@@ -56,7 +56,7 @@ trait MatchesTestTrait
             [],
             $this->validator->validate([
                 'test' => '',
-                'other' => 'test'
+                'other' => 'test',
             ])
         );
     }
@@ -77,11 +77,11 @@ trait MatchesTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
                 'test' => 'test',
-                'other' => ''
+                'other' => '',
             ])
         );
     }

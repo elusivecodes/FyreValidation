@@ -14,7 +14,7 @@ trait EmailTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test@test.com'
+                'test' => 'test@test.com',
             ])
         );
     }
@@ -26,7 +26,7 @@ trait EmailTestTrait
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -37,10 +37,10 @@ trait EmailTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }

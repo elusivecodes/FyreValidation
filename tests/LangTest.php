@@ -12,27 +12,16 @@ final class LangTest extends TestCase
 {
     protected Validator $validator;
 
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-        Lang::addPath('lang');
-    }
-
-    protected function setUp(): void
-    {
-        $this->validator = new Validator();
-    }
-
     public function testAlphaError(): void
     {
         $this->validator->add('field', Rule::alpha());
 
         $this->assertSame(
             [
-                'field' => ['The field must only contain alphabetical characters.']
+                'field' => ['The field must only contain alphabetical characters.'],
             ],
             $this->validator->validate([
-                'field' => 'invalid123'
+                'field' => 'invalid123',
             ])
         );
     }
@@ -43,10 +32,10 @@ final class LangTest extends TestCase
 
         $this->assertSame(
             [
-                'field' => ['The field must only contain alpha-numeric characters.']
+                'field' => ['The field must only contain alpha-numeric characters.'],
             ],
             $this->validator->validate([
-                'field' => 'invalid123!'
+                'field' => 'invalid123!',
             ])
         );
     }
@@ -57,10 +46,10 @@ final class LangTest extends TestCase
 
         $this->assertSame(
             [
-                'field' => ['The field must only contain ASCII characters.']
+                'field' => ['The field must only contain ASCII characters.'],
             ],
             $this->validator->validate([
-                'field' => 'invalid♫'
+                'field' => 'invalid♫',
             ])
         );
     }
@@ -72,11 +61,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be between 5 and 10.'
-                ]
+                    'The field must be between 5 and 10.',
+                ],
             ],
             $this->validator->validate([
-                'field' => '1'
+                'field' => '1',
             ])
         );
     }
@@ -88,11 +77,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a boolean value.'
-                ]
+                    'The field must be a boolean value.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -104,11 +93,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a decimal value.'
-                ]
+                    'The field must be a decimal value.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -120,12 +109,12 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must have a different value than other.'
-                ]
+                    'The field must have a different value than other.',
+                ],
             ],
             $this->validator->validate([
                 'field' => 'test',
-                'other' => 'test'
+                'other' => 'test',
             ])
         );
     }
@@ -137,11 +126,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a valid email address.'
-                ]
+                    'The field must be a valid email address.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -153,11 +142,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be equal to 2.'
-                ]
+                    'The field must be equal to 2.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -169,11 +158,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field length must be exactly 3.'
-                ]
+                    'The field length must be exactly 3.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'test'
+                'field' => 'test',
             ])
         );
     }
@@ -185,11 +174,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be greater than 2.'
-                ]
+                    'The field must be greater than 2.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 1
+                'field' => 1,
             ])
         );
     }
@@ -201,11 +190,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be greater than or equal to 2.'
-                ]
+                    'The field must be greater than or equal to 2.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 1
+                'field' => 1,
             ])
         );
     }
@@ -217,11 +206,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be one of the values: test, other'
-                ]
+                    'The field must be one of the values: test, other',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -233,11 +222,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be an integer value.'
-                ]
+                    'The field must be an integer value.',
+                ],
             ],
             $this->validator->validate([
-                'field' => '123.456'
+                'field' => '123.456',
             ])
         );
     }
@@ -249,11 +238,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a valid IP address.'
-                ]
+                    'The field must be a valid IP address.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -265,11 +254,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a valid IPv4 address.'
-                ]
+                    'The field must be a valid IPv4 address.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -281,11 +270,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a valid IPv6 address.'
-                ]
+                    'The field must be a valid IPv6 address.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -297,11 +286,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be less than 2.'
-                ]
+                    'The field must be less than 2.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 3
+                'field' => 3,
             ])
         );
     }
@@ -313,11 +302,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be less than or equal to 2.'
-                ]
+                    'The field must be less than or equal to 2.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 3
+                'field' => 3,
             ])
         );
     }
@@ -329,12 +318,12 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must have the same value as other.'
-                ]
+                    'The field must have the same value as other.',
+                ],
             ],
             $this->validator->validate([
                 'field' => 'test',
-                'other' => 'different'
+                'other' => 'different',
             ])
         );
     }
@@ -346,11 +335,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field length must be at most 3.'
-                ]
+                    'The field length must be at most 3.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'test'
+                'field' => 'test',
             ])
         );
     }
@@ -362,11 +351,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field length must be at least 3.'
-                ]
+                    'The field length must be at least 3.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'a'
+                'field' => 'a',
             ])
         );
     }
@@ -378,11 +367,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a natural number.'
-                ]
+                    'The field must be a natural number.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -394,11 +383,11 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must match the regular expression /test/.'
-                ]
+                    'The field must match the regular expression /test/.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
     }
@@ -410,8 +399,8 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field is required.'
-                ]
+                    'The field is required.',
+                ],
             ],
             $this->validator->validate([])
         );
@@ -424,12 +413,23 @@ final class LangTest extends TestCase
         $this->assertSame(
             [
                 'field' => [
-                    'The field must be a valid URL.'
-                ]
+                    'The field must be a valid URL.',
+                ],
             ],
             $this->validator->validate([
-                'field' => 'invalid'
+                'field' => 'invalid',
             ])
         );
+    }
+
+    public static function setUpBeforeClass(): void
+    {
+        Lang::clear();
+        Lang::addPath('lang');
+    }
+
+    protected function setUp(): void
+    {
+        $this->validator = new Validator();
     }
 }

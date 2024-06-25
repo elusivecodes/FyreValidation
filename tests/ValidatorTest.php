@@ -12,16 +12,6 @@ final class ValidatorTest extends TestCase
 {
     protected Validator $validator;
 
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-    }
-
-    protected function setUp(): void
-    {
-        $this->validator = new Validator();
-    }
-
     public function testCallback(): void
     {
         $this->validator->add('test', function($value) {
@@ -31,7 +21,7 @@ final class ValidatorTest extends TestCase
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }
@@ -45,7 +35,7 @@ final class ValidatorTest extends TestCase
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }
@@ -58,10 +48,10 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['error']
+                'test' => ['error'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }
@@ -74,10 +64,10 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'invalid'
+                'test' => 'invalid',
             ])
         );
     }
@@ -90,10 +80,10 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['error']
+                'test' => ['error'],
             ],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ])
         );
     }
@@ -130,11 +120,11 @@ final class ValidatorTest extends TestCase
             [
                 'test' => [
                     'natural number',
-                    'greater than 1'
-                ]
+                    'greater than 1',
+                ],
             ],
             $this->validator->validate([
-                'test' => 0.5
+                'test' => 0.5,
             ])
         );
     }
@@ -146,10 +136,10 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 0.5
+                'test' => 0.5,
             ])
         );
     }
@@ -162,7 +152,7 @@ final class ValidatorTest extends TestCase
         $this->assertSame(
             [
                 'test1' => ['invalid'],
-                'test2' => ['invalid']
+                'test2' => ['invalid'],
             ],
             $this->validator->validate([])
         );
@@ -176,10 +166,10 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ], 'create')
         );
     }
@@ -193,7 +183,7 @@ final class ValidatorTest extends TestCase
         $this->assertSame(
             [],
             $this->validator->validate([
-                'test' => 'test'
+                'test' => 'test',
             ], 'update')
         );
     }
@@ -253,10 +243,10 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([
-                'test' => ''
+                'test' => '',
             ])
         );
     }
@@ -269,9 +259,19 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['invalid']
+                'test' => ['invalid'],
             ],
             $this->validator->validate([])
         );
+    }
+
+    public static function setUpBeforeClass(): void
+    {
+        Lang::clear();
+    }
+
+    protected function setUp(): void
+    {
+        $this->validator = new Validator();
     }
 }

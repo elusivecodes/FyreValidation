@@ -28,5 +28,5 @@ return [
     'regex' => 'The {field} must match the regular expression {0}.',
     'required' => 'The {field} is required.',
     'requirePresence' => 'The {field} must be set.',
-    'url' => 'The {field} must be a valid URL.'
+    'url' => 'The {field} must be a valid URL.',
 ];
