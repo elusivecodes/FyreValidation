@@ -58,6 +58,7 @@ Add a validation rule.
     - `message` is a string representing the error message for the rule, and will default to *null*.
     - `name` is a string representing the name of the validation rule, and will default to *null*.
     - `skipEmpty` is a boolean indicating whether the rule should be skipped if the value is empty, and will default to *true*.
+    - `skipNotSet` is a boolean indicating whether the rule should be skipped if the value is not set, and will default to *true*.
 
 ```php
 $validator->add($field, $rule, $options);
