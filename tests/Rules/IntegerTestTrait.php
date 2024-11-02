@@ -25,7 +25,7 @@ trait IntegerTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be an integer value.'],
             ],
             $this->validator->validate([
                 'test' => '123.456',
@@ -51,7 +51,7 @@ trait IntegerTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be an integer value.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

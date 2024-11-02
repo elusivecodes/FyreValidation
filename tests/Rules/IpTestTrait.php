@@ -37,7 +37,7 @@ trait IpTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a valid IP address.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

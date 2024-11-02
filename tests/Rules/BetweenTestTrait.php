@@ -25,7 +25,7 @@ trait BetweenTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be between 5 and 10.'],
             ],
             $this->validator->validate([
                 'test' => '12',
@@ -39,7 +39,7 @@ trait BetweenTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be between 5 and 10.'],
             ],
             $this->validator->validate([
                 'test' => '1',

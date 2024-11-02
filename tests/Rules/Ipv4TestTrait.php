@@ -37,7 +37,7 @@ trait Ipv4TestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a valid IPv4 address.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',
@@ -61,7 +61,7 @@ trait Ipv4TestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a valid IPv4 address.'],
             ],
             $this->validator->validate([
                 'test' => '2001:0db8:85a3:0000:0000:8a2e:0370:7334',

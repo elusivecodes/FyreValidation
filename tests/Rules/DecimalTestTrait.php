@@ -49,7 +49,7 @@ trait DecimalTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a decimal value.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

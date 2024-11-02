@@ -49,7 +49,7 @@ trait RequirePresenceTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be set.'],
             ],
             $this->validator->validate([])
         );

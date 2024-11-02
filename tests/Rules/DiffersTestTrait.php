@@ -75,7 +75,7 @@ trait DiffersTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must have a different value than other.'],
             ],
             $this->validator->validate([
                 'test' => 'test',

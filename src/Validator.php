@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Fyre\Validation;
 
 use Closure;
+use Fyre\Container\Container;
+use Fyre\Lang\Lang;
 
 use function array_key_exists;
 use function array_unique;
@@ -13,7 +15,25 @@ use function array_unique;
  */
 class Validator
 {
+    protected Container $container;
+
     protected array $fields = [];
+
+    protected Lang|null $lang = null;
+
+    /**
+     * New Validator constructor.
+     *
+     * @param Container $container The Container.
+     * @param Lang $lang The Lang.
+     */
+    public function __construct(Container $container, Lang $lang)
+    {
+        $this->container = $container;
+        $this->lang = $lang;
+
+        $this->lang->addPath(__DIR__.'/../lang');
+    }
 
     /**
      * Add a validation rule.
@@ -149,13 +169,32 @@ class Validator
                     continue;
                 }
 
-                $result = $rule($value, $data, $field);
+                $result = $this->container->call($rule->getCallback(), ['value' => $value, 'data' => $data, 'field' => $field]);
 
                 if ($result === true) {
                     continue;
                 }
 
-                $fieldErrors[] = $result ?: $rule->getMessage($field);
+                if (!$result) {
+                    $result = $rule->getMessage();
+                }
+
+                if (!$result) {
+                    $name = $rule->getName();
+
+                    if ($name) {
+                        $arguments = $rule->getArguments();
+                        $arguments['field'] = $field;
+
+                        $result = $this->lang->get('Validation.'.$name, $arguments);
+                    }
+                }
+
+                if (!$result) {
+                    $result = 'invalid';
+                }
+
+                $fieldErrors[] = $result;
             }
 
             if ($fieldErrors !== []) {

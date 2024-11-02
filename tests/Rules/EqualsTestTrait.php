@@ -25,7 +25,7 @@ trait EqualsTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be equal to 2.'],
             ],
             $this->validator->validate([
                 'test' => '3',
@@ -39,7 +39,7 @@ trait EqualsTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be equal to 2.'],
             ],
             $this->validator->validate([
                 'test' => '1',
@@ -77,7 +77,7 @@ trait EqualsTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be equal to 2.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

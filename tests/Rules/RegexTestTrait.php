@@ -37,7 +37,7 @@ trait RegexTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must match the regular expression /test/.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

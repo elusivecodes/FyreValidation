@@ -37,7 +37,7 @@ trait EmailTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a valid email address.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

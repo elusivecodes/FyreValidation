@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
+use Fyre\Container\Container;
+use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
 use Fyre\Validation\Rule;
 use Fyre\Validation\Validator;
@@ -65,13 +67,12 @@ final class RulesTest extends TestCase
         );
     }
 
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-    }
-
     protected function setUp(): void
     {
-        $this->validator = new Validator();
+        $container = new Container();
+        $container->singleton(TypeParser::class);
+        $container->singleton(Lang::class);
+
+        $this->validator = $container->use(Validator::class);
     }
 }

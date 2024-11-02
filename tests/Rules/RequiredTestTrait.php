@@ -25,7 +25,7 @@ trait RequiredTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test is required.'],
             ],
             $this->validator->validate([
                 'test' => '',
@@ -51,7 +51,7 @@ trait RequiredTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test is required.'],
             ],
             $this->validator->validate([])
         );

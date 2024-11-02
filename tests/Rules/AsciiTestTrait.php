@@ -37,7 +37,7 @@ trait AsciiTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must only contain ASCII characters.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid♫',

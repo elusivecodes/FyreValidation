@@ -49,7 +49,7 @@ trait BooleanTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a boolean value.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

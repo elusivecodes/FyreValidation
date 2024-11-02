@@ -25,7 +25,7 @@ trait NotEmptyTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must not be empty.'],
             ],
             $this->validator->validate([
                 'test' => '',

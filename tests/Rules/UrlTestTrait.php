@@ -37,7 +37,7 @@ trait UrlTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a valid URL.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

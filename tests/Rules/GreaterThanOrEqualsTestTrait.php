@@ -25,7 +25,7 @@ trait GreaterThanOrEqualsTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be greater than or equal to 2.'],
             ],
             $this->validator->validate([
                 'test' => 1,

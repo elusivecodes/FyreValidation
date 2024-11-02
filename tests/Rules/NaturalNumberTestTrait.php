@@ -25,7 +25,7 @@ trait NaturalNumberTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a natural number.'],
             ],
             $this->validator->validate([
                 'test' => '123.456',
@@ -51,7 +51,7 @@ trait NaturalNumberTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a natural number.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',
@@ -75,7 +75,7 @@ trait NaturalNumberTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a natural number.'],
             ],
             $this->validator->validate([
                 'test' => '-123',

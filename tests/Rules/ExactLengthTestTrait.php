@@ -37,7 +37,7 @@ trait ExactLengthTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test length must be exactly 3.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',

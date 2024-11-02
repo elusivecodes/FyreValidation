@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
+use Fyre\Container\Container;
+use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
 use Fyre\Validation\Rule;
 use Fyre\Validation\Validator;
@@ -136,7 +138,10 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => [
+                    'The test must be a natural number.',
+                    'The test must be greater than 1.'
+                ],
             ],
             $this->validator->validate([
                 'test' => 0.5,
@@ -151,8 +156,8 @@ final class ValidatorTest extends TestCase
 
         $this->assertSame(
             [
-                'test1' => ['invalid'],
-                'test2' => ['invalid'],
+                'test1' => ['The test1 is required.'],
+                'test2' => ['The test2 is required.'],
             ],
             $this->validator->validate([])
         );
@@ -265,13 +270,12 @@ final class ValidatorTest extends TestCase
         );
     }
 
-    public static function setUpBeforeClass(): void
-    {
-        Lang::clear();
-    }
-
     protected function setUp(): void
     {
-        $this->validator = new Validator();
+        $container = new Container();
+        $container->singleton(TypeParser::class);
+        $container->singleton(Lang::class);
+
+        $this->validator = $container->use(Validator::class);
     }
 }

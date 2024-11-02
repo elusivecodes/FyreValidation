@@ -25,7 +25,7 @@ trait LessThanTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be less than 2.'],
             ],
             $this->validator->validate([
                 'test' => 3,
@@ -51,7 +51,7 @@ trait LessThanTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be less than 2.'],
             ],
             $this->validator->validate([
                 'test' => 2,

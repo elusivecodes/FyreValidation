@@ -49,7 +49,7 @@ trait MinLengthTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test length must be at least 3.'],
             ],
             $this->validator->validate([
                 'test' => 'a',

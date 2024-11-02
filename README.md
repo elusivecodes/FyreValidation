@@ -5,7 +5,8 @@
 
 ## Table Of Contents
 - [Installation](#installation)
-- [Validators](#validators)
+- [Basic Usage](#basic-usage)
+- [Methods](#methods)
 - [Rules](#rules)
 - [Error Messages](#error-messages)
 
@@ -22,16 +23,29 @@ composer require fyre/validation
 In PHP:
 
 ```php
-use Fyre\Validation\Rule;
 use Fyre\Validation\Validator;
 ```
 
 
-## Validators
+## Basic Usage
+
+- `$container` is a  [*Container*](https://github.com/elusivecodes/FyreContainer).
+- `$lang` is a [*Lang*](https://github.com/elusivecodes/FyreLang).
 
 ```php
-$validator = new Validator();
+$validator = new Validator($container, $lang);
 ```
+
+**Autoloading**
+
+Any dependencies will be injected automatically when loading from the [*Container*](https://github.com/elusivecodes/FyreContainer).
+
+```php
+$validator = $container->use(Validator::class);
+```
+
+
+## Methods
 
 **Add**
 
@@ -48,6 +62,18 @@ Add a validation rule.
 ```php
 $validator->add($field, $rule, $options);
 ```
+
+If using a *Closure* rule, the `$rule` should be expressing in the following format:
+
+```php
+$rule = function(mixed $value, array $data, string $field): string|bool {
+    // validation logic
+
+    return true;
+};
+```
+
+Any additional arguments will be resolved automatically from the [*Container*](https://github.com/elusivecodes/FyreContainer).
 
 **Clear**
 
@@ -97,6 +123,10 @@ $errors = $validator->validate($data, $type);
 
 
 ## Rules
+
+```php
+use Fyre\Validation\Rule;
+```
 
 **Alpha**
 
@@ -395,7 +425,7 @@ $validator->add('field', Rule::required(), [
 Alternatively, for custom validation callbacks, a string can be returned and that will be used as the error messages.
 
 ```php
-$validator->add('field', function($value) {
+$validator->add('field', function(mixed $value): bool|string {
     if ($value) {
         return true;
     }

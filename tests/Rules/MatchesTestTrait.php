@@ -39,7 +39,7 @@ trait MatchesTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must have the same value as other.'],
             ],
             $this->validator->validate([
                 'test' => 'test',
@@ -77,7 +77,7 @@ trait MatchesTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must have the same value as other.'],
             ],
             $this->validator->validate([
                 'test' => 'test',

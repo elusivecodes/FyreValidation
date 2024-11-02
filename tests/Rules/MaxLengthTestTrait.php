@@ -49,7 +49,7 @@ trait MaxLengthTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test length must be at most 3.'],
             ],
             $this->validator->validate([
                 'test' => 'test',

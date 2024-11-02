@@ -37,7 +37,7 @@ trait AlphaTestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must only contain alphabetical characters.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid123',

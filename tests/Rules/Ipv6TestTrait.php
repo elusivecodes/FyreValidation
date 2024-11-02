@@ -37,7 +37,7 @@ trait Ipv6TestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a valid IPv6 address.'],
             ],
             $this->validator->validate([
                 'test' => 'invalid',
@@ -61,7 +61,7 @@ trait Ipv6TestTrait
 
         $this->assertSame(
             [
-                'test' => ['invalid'],
+                'test' => ['The test must be a valid IPv6 address.'],
             ],
             $this->validator->validate([
                 'test' => '1.1.1.1',
