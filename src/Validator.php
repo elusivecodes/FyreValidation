@@ -5,6 +5,7 @@ namespace Fyre\Validation;
 
 use Closure;
 use Fyre\Container\Container;
+use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
 
 use function array_key_exists;
@@ -21,16 +22,19 @@ class Validator
 
     protected Lang|null $lang = null;
 
+    protected TypeParser $typeParser;
+
     /**
      * New Validator constructor.
      *
      * @param Container $container The Container.
      * @param Lang $lang The Lang.
      */
-    public function __construct(Container $container, Lang $lang)
+    public function __construct(Container $container, TypeParser $typeParser, Lang $lang)
     {
         $this->container = $container;
         $this->lang = $lang;
+        $this->typeParser = $typeParser;
 
         $this->lang->addPath(__DIR__.'/../lang');
     }
@@ -169,7 +173,7 @@ class Validator
                     continue;
                 }
 
-                $result = $this->container->call($rule->getCallback(), ['value' => $value, 'data' => $data, 'field' => $field]);
+                $result = Closure::bind($rule->getCallback(), $this, $this)($value, $data, $field);
 
                 if ($result === true) {
                     continue;

@@ -124,8 +124,8 @@ class Rule
     public static function date(): static
     {
         return new static(
-            function(TypeParser $typeParser, mixed $value, array $data, string $field): bool {
-                return !$value || $typeParser->use('date')->parse($value) !== null;
+            function(mixed $value): bool {
+                return !$value || $this->typeParser->use('date')->parse($value) !== null;
             },
             __FUNCTION__
         );
@@ -139,8 +139,8 @@ class Rule
     public static function dateTime(): static
     {
         return new static(
-            function(TypeParser $typeParser, mixed $value, array $data, string $field): bool {
-                return !$value || $typeParser->use('datetime')->parse($value) !== null;
+            function(mixed $value): bool {
+                return !$value || $this->typeParser->use('datetime')->parse($value) !== null;
             },
             __FUNCTION__
         );
@@ -486,8 +486,8 @@ class Rule
     public static function time(): static
     {
         return new static(
-            function(TypeParser $typeParser, mixed $value, array $data, string $field): bool {
-                return !$value || $typeParser->use('time')->parse($value) !== null;
+            function(mixed $value): bool {
+                return !$value || $this->typeParser->use('time')->parse($value) !== null;
             },
             __FUNCTION__
         );

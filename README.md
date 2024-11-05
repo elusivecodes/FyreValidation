@@ -30,10 +30,11 @@ use Fyre\Validation\Validator;
 ## Basic Usage
 
 - `$container` is a  [*Container*](https://github.com/elusivecodes/FyreContainer).
+- `$typeParser` is a  [*TypeParser*](https://github.com/elusivecodes/FyreTypeParser).
 - `$lang` is a [*Lang*](https://github.com/elusivecodes/FyreLang).
 
 ```php
-$validator = new Validator($container, $lang);
+$validator = new Validator($container, $typeParser, $lang);
 ```
 
 **Autoloading**
@@ -55,10 +56,8 @@ Add a validation rule.
 - `$rule` is a *Closure* or a [*Rule*](#rules) representing the validation rule.
 - `$options` is an array containing options for the validation rule.
     - `on` is a string representing the type of validation the rule applies to, and will default to *null*.
-    - `message` is a string representing the error message for the rule, and will default to *null*.
+    - `message` is a string representing the [error message](#error-messages) for the rule, and will default to *null*.
     - `name` is a string representing the name of the validation rule, and will default to *null*.
-    - `skipEmpty` is a boolean indicating whether the rule should be skipped if the value is empty, and will default to *true*.
-    - `skipNotSet` is a boolean indicating whether the rule should be skipped if the value is not set, and will default to *true*.
 
 ```php
 $validator->add($field, $rule, $options);
@@ -73,8 +72,6 @@ $rule = function(mixed $value, array $data, string $field): string|bool {
     return true;
 };
 ```
-
-Any additional arguments will be resolved automatically from the [*Container*](https://github.com/elusivecodes/FyreContainer).
 
 **Clear**
 

@@ -140,7 +140,7 @@ final class ValidatorTest extends TestCase
             [
                 'test' => [
                     'The test must be a natural number.',
-                    'The test must be greater than 1.'
+                    'The test must be greater than 1.',
                 ],
             ],
             $this->validator->validate([
