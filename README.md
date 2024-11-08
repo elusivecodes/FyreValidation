@@ -29,7 +29,7 @@ use Fyre\Validation\Validator;
 
 ## Basic Usage
 
-- `$container` is a  [*Container*](https://github.com/elusivecodes/FyreContainer).
+- `$container` is a [*Container*](https://github.com/elusivecodes/FyreContainer).
 - `$typeParser` is a  [*TypeParser*](https://github.com/elusivecodes/FyreTypeParser).
 - `$lang` is a [*Lang*](https://github.com/elusivecodes/FyreLang).
 
