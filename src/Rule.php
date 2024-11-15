@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Fyre\Validation;
 
 use Closure;
-use Fyre\DB\TypeParser;
 
 use function array_key_exists;
 use function ctype_alnum;
@@ -547,7 +546,7 @@ class Rule
 
     /**
      * Get the callback.
-     * 
+     *
      * @return Closure The callback.
      */
     public function getCallback(): Closure
