@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9e25e76041b0ee5dce7ac6294b75ef4",
+    "content-hash": "99489fa1b05de565e4ca360ff51d185c",
     "packages": [
         {
             "name": "fyre/array",
@@ -47,6 +47,52 @@
                 "source": "https://github.com/elusivecodes/FyreArray/tree/v2.0.12"
             },
             "time": "2024-10-30T10:48:56+00:00"
+        },
+        {
+            "name": "fyre/config",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elusivecodes/FyreConfig.git",
+                "reference": "12653b47c5a7181840ece99c8a8d986dd5efad86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elusivecodes/FyreConfig/zipball/12653b47c5a7181840ece99c8a8d986dd5efad86",
+                "reference": "12653b47c5a7181840ece99c8a8d986dd5efad86",
+                "shasum": ""
+            },
+            "require": {
+                "fyre/array": "^2.0",
+                "fyre/path": "^2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.59",
+                "fyre/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fyre\\Config\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "elusivecodes",
+                    "email": "elusivecodes@gmail.com"
+                }
+            ],
+            "description": "A configuration library.",
+            "support": {
+                "issues": "https://github.com/elusivecodes/FyreConfig/issues",
+                "source": "https://github.com/elusivecodes/FyreConfig/tree/v4.1.0"
+            },
+            "time": "2024-11-15T10:10:09+00:00"
         },
         {
             "name": "fyre/container",
@@ -134,20 +180,21 @@
         },
         {
             "name": "fyre/lang",
-            "version": "v4.1.0",
+            "version": "v5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elusivecodes/FyreLang.git",
-                "reference": "4672e04c6e26b2b6f4245eafaf5f202ac37b3906"
+                "reference": "cbea8b6814b1c1280d4014672d552a2debdc5713"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elusivecodes/FyreLang/zipball/4672e04c6e26b2b6f4245eafaf5f202ac37b3906",
-                "reference": "4672e04c6e26b2b6f4245eafaf5f202ac37b3906",
+                "url": "https://api.github.com/repos/elusivecodes/FyreLang/zipball/cbea8b6814b1c1280d4014672d552a2debdc5713",
+                "reference": "cbea8b6814b1c1280d4014672d552a2debdc5713",
                 "shasum": ""
             },
             "require": {
                 "fyre/array": "^2.0",
+                "fyre/config": "^4.1",
                 "fyre/path": "^2.0"
             },
             "require-dev": {
@@ -174,9 +221,9 @@
             "description": "A language utility library.",
             "support": {
                 "issues": "https://github.com/elusivecodes/FyreLang/issues",
-                "source": "https://github.com/elusivecodes/FyreLang/tree/v4.1.0"
+                "source": "https://github.com/elusivecodes/FyreLang/tree/v5.0"
             },
-            "time": "2024-11-15T10:12:17+00:00"
+            "time": "2024-11-16T05:56:35+00:00"
         },
         {
             "name": "fyre/path",

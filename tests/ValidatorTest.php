@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Rules;
 
+use Fyre\Config\Config;
 use Fyre\Container\Container;
 use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
@@ -275,6 +276,9 @@ final class ValidatorTest extends TestCase
         $container = new Container();
         $container->singleton(TypeParser::class);
         $container->singleton(Lang::class);
+        $container->singleton(Config::class);
+
+        $container->use(Config::class)->set('App.locale', 'en');
 
         $this->validator = $container->use(Validator::class);
     }
