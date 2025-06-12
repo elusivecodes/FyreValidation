@@ -16,13 +16,7 @@ use function array_unique;
  */
 class Validator
 {
-    protected Container $container;
-
     protected array $fields = [];
-
-    protected Lang|null $lang = null;
-
-    protected TypeParser $typeParser;
 
     /**
      * New Validator constructor.
@@ -30,12 +24,11 @@ class Validator
      * @param Container $container The Container.
      * @param Lang $lang The Lang.
      */
-    public function __construct(Container $container, TypeParser $typeParser, Lang $lang)
-    {
-        $this->container = $container;
-        $this->lang = $lang;
-        $this->typeParser = $typeParser;
-
+    public function __construct(
+        protected Container $container,
+        protected TypeParser $typeParser,
+        protected Lang $lang
+    ) {
         $this->lang->addPath(__DIR__.'/../lang');
     }
 

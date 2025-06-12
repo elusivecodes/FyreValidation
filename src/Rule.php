@@ -33,17 +33,7 @@ use const FILTER_VALIDATE_IP;
  */
 class Rule
 {
-    protected array $arguments;
-
-    protected Closure $callback;
-
     protected string|null $message = null;
-
-    protected string|null $name = null;
-
-    protected bool $skipEmpty = true;
-
-    protected bool $skipNotSet = true;
 
     protected string|null $type = null;
 
@@ -514,14 +504,13 @@ class Rule
      * @param bool $skipEmpty Whether to skip validation for empty values.
      * @param bool $skipNotSet Whether to skip validation for unset values.
      */
-    public function __construct(Closure $callback, string|null $name = null, array $arguments = [], bool $skipEmpty = true, bool $skipNotSet = true)
-    {
-        $this->callback = $callback;
-        $this->name = $name;
-        $this->arguments = $arguments;
-        $this->skipEmpty = $skipEmpty;
-        $this->skipNotSet = $skipNotSet;
-    }
+    public function __construct(
+        protected Closure $callback,
+        protected string|null $name = null,
+        protected array $arguments = [],
+        protected bool $skipEmpty = true,
+        protected bool $skipNotSet = true
+    ) {}
 
     /**
      * Check the type of rule.
