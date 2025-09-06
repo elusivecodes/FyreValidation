@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Fyre\Validation;
 
 use Closure;
+use Fyre\Utility\Traits\MacroTrait;
 
 use function array_key_exists;
 use function ctype_alnum;
@@ -33,6 +34,8 @@ use const FILTER_VALIDATE_IP;
  */
 class Rule
 {
+    use MacroTrait;
+
     protected string|null $message = null;
 
     protected string|null $type = null;

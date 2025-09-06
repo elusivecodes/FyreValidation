@@ -7,9 +7,12 @@ use Fyre\Config\Config;
 use Fyre\Container\Container;
 use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
+use Fyre\Utility\Traits\MacroTrait;
 use Fyre\Validation\Rule;
 use Fyre\Validation\Validator;
 use PHPUnit\Framework\TestCase;
+
+use function class_uses;
 
 final class RulesTest extends TestCase
 {
@@ -65,6 +68,14 @@ final class RulesTest extends TestCase
         $this->assertSame(
             'alpha',
             $rule->getName()
+        );
+    }
+
+    public function testMacroable(): void
+    {
+        $this->assertContains(
+            MacroTrait::class,
+            class_uses(Rule::class)
         );
     }
 

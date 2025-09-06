@@ -7,9 +7,12 @@ use Fyre\Config\Config;
 use Fyre\Container\Container;
 use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
+use Fyre\Utility\Traits\MacroTrait;
 use Fyre\Validation\Rule;
 use Fyre\Validation\Validator;
 use PHPUnit\Framework\TestCase;
+
+use function class_uses;
 
 final class ValidatorTest extends TestCase
 {
@@ -111,6 +114,14 @@ final class ValidatorTest extends TestCase
         $this->assertInstanceOf(
             Rule::class,
             $rules[1]
+        );
+    }
+
+    public function testMacroable(): void
+    {
+        $this->assertContains(
+            MacroTrait::class,
+            class_uses(Validator::class)
         );
     }
 

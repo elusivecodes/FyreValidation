@@ -7,6 +7,7 @@ use Closure;
 use Fyre\Container\Container;
 use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
+use Fyre\Utility\Traits\MacroTrait;
 
 use function array_key_exists;
 use function array_unique;
@@ -16,6 +17,8 @@ use function array_unique;
  */
 class Validator
 {
+    use MacroTrait;
+
     protected array $fields = [];
 
     /**
