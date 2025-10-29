@@ -7,7 +7,7 @@ use Fyre\Config\Config;
 use Fyre\Container\Container;
 use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
-use Fyre\Utility\Traits\MacroTrait;
+use Fyre\Utility\Traits\StaticMacroTrait;
 use Fyre\Validation\Rule;
 use Fyre\Validation\Validator;
 use PHPUnit\Framework\TestCase;
@@ -74,7 +74,7 @@ final class RulesTest extends TestCase
     public function testMacroable(): void
     {
         $this->assertContains(
-            MacroTrait::class,
+            StaticMacroTrait::class,
             class_uses(Rule::class)
         );
     }
