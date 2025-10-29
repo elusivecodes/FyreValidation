@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Fyre\Validation;
 
 use Closure;
+use Fyre\DB\TypeParser;
 use Fyre\Utility\Traits\StaticMacroTrait;
 
 use function array_key_exists;
@@ -48,7 +49,7 @@ class Rule
     public static function alpha(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_alpha((string) $value),
+            static fn(mixed $value): bool => is_scalar($value) && ctype_alpha((string) $value),
             __FUNCTION__
         );
     }
@@ -61,7 +62,7 @@ class Rule
     public static function alphaNumeric(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_alnum((string) $value),
+            static fn(mixed $value): bool => is_scalar($value) && ctype_alnum((string) $value),
             __FUNCTION__
         );
     }
@@ -74,7 +75,7 @@ class Rule
     public static function ascii(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_print((string) $value),
+            static fn(mixed $value): bool => is_scalar($value) && ctype_print((string) $value),
             __FUNCTION__
         );
     }
@@ -89,7 +90,7 @@ class Rule
     public static function between(int $min, int $max): static
     {
         return new static(
-            fn(mixed $value): bool => $value >= $min && $value <= $max,
+            static fn(mixed $value): bool => $value >= $min && $value <= $max,
             __FUNCTION__,
             [$min, $max]
         );
@@ -103,7 +104,7 @@ class Rule
     public static function boolean(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -116,8 +117,8 @@ class Rule
     public static function date(): static
     {
         return new static(
-            function(mixed $value): bool {
-                return !$value || $this->typeParser->use('date')->parse($value) !== null;
+            static function(mixed $value, TypeParser $typeParser): bool {
+                return !$value || $typeParser->use('date')->parse($value) !== null;
             },
             __FUNCTION__
         );
@@ -131,8 +132,8 @@ class Rule
     public static function dateTime(): static
     {
         return new static(
-            function(mixed $value): bool {
-                return !$value || $this->typeParser->use('datetime')->parse($value) !== null;
+            static function(mixed $value, TypeParser $typeParser): bool {
+                return !$value || $typeParser->use('datetime')->parse($value) !== null;
             },
             __FUNCTION__
         );
@@ -146,7 +147,7 @@ class Rule
     public static function decimal(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -174,7 +175,7 @@ class Rule
     public static function email(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE | FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE | FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -201,7 +202,7 @@ class Rule
     public static function equals(mixed $other): static
     {
         return new static(
-            fn(mixed $value): bool => $value == $other,
+            static fn(mixed $value): bool => $value == $other,
             __FUNCTION__,
             [$other]
         );
@@ -216,7 +217,7 @@ class Rule
     public static function exactLength(int $length): static
     {
         return new static(
-            fn(mixed $value): bool => strlen((string) $value) === $length,
+            static fn(mixed $value): bool => strlen((string) $value) === $length,
             __FUNCTION__,
             [$length]
         );
@@ -231,7 +232,7 @@ class Rule
     public static function greaterThan(int $min): static
     {
         return new static(
-            fn(mixed $value): bool => $value > $min,
+            static fn(mixed $value): bool => $value > $min,
             __FUNCTION__,
             [$min]
         );
@@ -246,7 +247,7 @@ class Rule
     public static function greaterThanOrEquals(int $min): static
     {
         return new static(
-            fn(mixed $value): bool => $value >= $min,
+            static fn(mixed $value): bool => $value >= $min,
             __FUNCTION__,
             [$min]
         );
@@ -261,7 +262,7 @@ class Rule
     public static function in(array $values): static
     {
         return new static(
-            fn(mixed $value): bool => in_array($value, $values),
+            static fn(mixed $value): bool => in_array($value, $values),
             __FUNCTION__,
             [implode(', ', $values)]
         );
@@ -275,7 +276,7 @@ class Rule
     public static function integer(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -288,7 +289,7 @@ class Rule
     public static function ip(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -301,7 +302,7 @@ class Rule
     public static function ipv4(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -314,7 +315,7 @@ class Rule
     public static function ipv6(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }
@@ -328,7 +329,7 @@ class Rule
     public static function lessThan(int $max): static
     {
         return new static(
-            fn(mixed $value): bool => $value < $max,
+            static fn(mixed $value): bool => $value < $max,
             __FUNCTION__,
             [$max]
         );
@@ -343,7 +344,7 @@ class Rule
     public static function lessThanOrEquals(int $max): static
     {
         return new static(
-            fn(mixed $value): bool => $value <= $max,
+            static fn(mixed $value): bool => $value <= $max,
             __FUNCTION__,
             [$max]
         );
@@ -373,7 +374,7 @@ class Rule
     public static function maxLength(int $length): static
     {
         return new static(
-            fn(mixed $value): bool => strlen((string) $value) <= $length,
+            static fn(mixed $value): bool => strlen((string) $value) <= $length,
             __FUNCTION__,
             [$length]
         );
@@ -388,7 +389,7 @@ class Rule
     public static function minLength(int $length): static
     {
         return new static(
-            fn(mixed $value): bool => strlen((string) $value) >= $length,
+            static fn(mixed $value): bool => strlen((string) $value) >= $length,
             __FUNCTION__,
             [$length]
         );
@@ -402,7 +403,7 @@ class Rule
     public static function naturalNumber(): static
     {
         return new static(
-            fn(mixed $value): bool => is_scalar($value) && ctype_digit((string) $value),
+            static fn(mixed $value): bool => is_scalar($value) && ctype_digit((string) $value),
             __FUNCTION__
         );
     }
@@ -415,7 +416,7 @@ class Rule
     public static function notEmpty(): static
     {
         return new static(
-            fn(mixed $value): bool => $value !== null && $value !== '' && $value !== [],
+            static fn(mixed $value): bool => $value !== null && $value !== '' && $value !== [],
             __FUNCTION__,
             skipEmpty: false
         );
@@ -430,7 +431,7 @@ class Rule
     public static function regex(string $regex): static
     {
         return new static(
-            fn(mixed $value): bool => preg_match($regex, (string) $value) === 1,
+            static fn(mixed $value): bool => preg_match($regex, (string) $value) === 1,
             __FUNCTION__,
             [$regex]
         );
@@ -457,13 +458,12 @@ class Rule
     /**
      * Create a "require presence" Rule.
      *
-     * @param bool $mustBeSet Whether the key must be set.
      * @return Rule The Rule.
      */
-    public static function requirePresence(bool $mustBeSet = false): static
+    public static function requirePresence(): static
     {
         return new static(
-            fn(mixed $value, array $data, string $field): bool => array_key_exists($field, $data),
+            fn(array $data, string $field): bool => array_key_exists($field, $data),
             __FUNCTION__,
             skipEmpty: false,
             skipNotSet: false
@@ -478,8 +478,8 @@ class Rule
     public static function time(): static
     {
         return new static(
-            function(mixed $value): bool {
-                return !$value || $this->typeParser->use('time')->parse($value) !== null;
+            static function(mixed $value, TypeParser $typeParser): bool {
+                return !$value || $typeParser->use('time')->parse($value) !== null;
             },
             __FUNCTION__
         );
@@ -493,7 +493,7 @@ class Rule
     public static function url(): static
     {
         return new static(
-            fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE) !== null,
+            static fn(mixed $value): bool => filter_var($value, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE) !== null,
             __FUNCTION__
         );
     }

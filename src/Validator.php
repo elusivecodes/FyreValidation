@@ -5,7 +5,6 @@ namespace Fyre\Validation;
 
 use Closure;
 use Fyre\Container\Container;
-use Fyre\DB\TypeParser;
 use Fyre\Lang\Lang;
 use Fyre\Utility\Traits\MacroTrait;
 
@@ -29,7 +28,6 @@ class Validator
      */
     public function __construct(
         protected Container $container,
-        protected TypeParser $typeParser,
         protected Lang $lang
     ) {
         $this->lang->addPath(__DIR__.'/../lang');
@@ -169,7 +167,11 @@ class Validator
                     continue;
                 }
 
-                $result = Closure::bind($rule->getCallback(), $this, $this)($value, $data, $field);
+                $result = $this->container->call($rule->getCallback(), [
+                    'value' => $value,
+                    'data' => $data,
+                    'field' => $field,
+                ]);
 
                 if ($result === true) {
                     continue;

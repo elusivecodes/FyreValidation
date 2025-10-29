@@ -30,11 +30,10 @@ use Fyre\Validation\Validator;
 ## Basic Usage
 
 - `$container` is a [*Container*](https://github.com/elusivecodes/FyreContainer).
-- `$typeParser` is a  [*TypeParser*](https://github.com/elusivecodes/FyreTypeParser).
 - `$lang` is a [*Lang*](https://github.com/elusivecodes/FyreLang).
 
 ```php
-$validator = new Validator($container, $typeParser, $lang);
+$validator = new Validator($container, $lang);
 ```
 
 **Autoloading**
@@ -72,6 +71,8 @@ $rule = function(mixed $value, array $data, string $field): string|bool {
     return true;
 };
 ```
+
+Any other arguments will be resolved from the [*Container*](https://github.com/elusivecodes/FyreContainer).
 
 **Clear**
 
