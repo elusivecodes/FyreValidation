@@ -62,7 +62,7 @@ Add a validation rule.
 $validator->add($field, $rule, $options);
 ```
 
-If using a *Closure* rule, the `$rule` should be expressing in the following format:
+If using a *Closure* rule, the `$rule` should be expressed in the following format:
 
 ```php
 $rule = function(mixed $value, array $data, string $field): string|bool {
